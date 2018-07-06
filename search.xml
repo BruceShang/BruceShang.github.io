@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[iTem2 + oh my zsh + agnoster 打造自己的终端工具]]></title>
+    <url>%2F2018%2F07%2F06%2FiTem2-oh-my-zsh-agnoster-%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E7%BB%88%E7%AB%AF%E5%B7%A5%E5%85%B7%2F</url>
+    <content type="text"><![CDATA[1. 安装iTem2iTerm2传送门，选择要下载的安装包 2. oh-my-zsh介绍 oh-my-zsh是基于zsh的功能做了一个扩展，方便的插件管理、主题自定义，以及漂亮的自动完成效果 安装zsh12brew install zsh// 出现这个画面后就代码安装成功 没有安装homebrew的先安装一下homebrew官网 复制下面命令，在终端中输入： 1/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" brew 安装插件的时候默认都会进行更新，这个是特别慢的毕竟有道墙，手动设置关闭自动更新，在终端中执行下面代码。 1export HOMEBREW_NO_AUTO_UPDATE=true 查看当前默认bash，修改默认shell1chsh -s /bin/zsh 修改完之后验证是否修改成功12echo $SHELL// 此时终端打印出 /bin/zsh 恭喜你设置成功 下载安装PowerFonts字体123456# git clonegit clone https://github.com/powerline/fonts.git --depth=1# cd to foldercd fonts# run install shell./install.sh 安装好字体库之后，我们来设置iTerm2的字体，具体的操作是iTerm2 -&gt; Preferences -&gt; Profiles -&gt; Text，在Font区域选中Change Font，然后找到Meslo LG字体。有L、M、S可选，看个人喜好： 配置agnoster主题安装成功之后，我们可以通过vi ~/.zshrc，设置ZSH_THEME=”agnoster”对主题进行修改。 最终效果图 命令补全123456789cd ~/.oh-my-zsh/custom/plugins/git clone https://github.com/zsh-users/zsh-autosuggestionsvi ~/.zshrc// 找到plugins，修改内容plugins=( git zsh-autosuggestions)// 默认打开里面已经有一个git 效果展示 安装高亮插件123456789cd ~/.oh-my-zsh/custom/plugins/git clone https://github.com/zsh-users/zsh-syntax-highlighting.gitvi ~/.zshrc// 找到plugins，修改内容plugins=( git zsh-autosuggestions zsh-syntax-highlighting) zsh-syntax-highlighting必须在最后一个。 然后在文件的最后一行添加：1source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 按一下esc调出vi命令，输入:wq保存并退出vi模式。 执行命令使刚才的修改生效：1source ~/.zshrc 配置完成]]></content>
+      <tags>
+        <tag>iTem2</tag>
+        <tag>zsh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数组的常用方法]]></title>
+    <url>%2F2018%2F05%2F13%2F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[1.创建数组的两个基本方式1234// 1. 使用Array构造函数let person = new Array()// 2. 使用字面量表示法let person = ['name', 'age'] 2. 判断是否为数组类型123456789// 1. 使用instanceof判断let num = [1, 3, 5, 7]console.log(num instanceof Array) // true// 2. constructor 判断console.log(num.constructor === Array) // true// 3. 现获取内部的属性，返回一个字符串，再利用call，达到检测数组的目的,综合考虑推荐这种写法console.log(Object.prototype.toString.call(num) === '[object Array]') // true// 4. Array.isArrayconsole.log(Array.isArray(num)) // true 3. 数组中的常用方法(只列出常用的) push() pop() unshift() shift() splice()1234567891011121314151617181920212223242526272829303132333435// push()方法可以接受任意参数，逐个添加到数组尾部，并返回添加后的数组长度，该数组也会修改原数组。let arr = [1]console.log(arr.push(2)) // arr =&gt; [1, 2]console.log(arr.push('three')) // arr =&gt; [1, 'three']console.log(arr.push(&#123; a: 3 &#125;)) // arr =&gt; [1, &#123; a: 3 &#125;]console.log(arr.push([2, 3])) // arr =&gt; [1, [2, 3]]// pop() 从数组末尾移除最后一项，减少数组的长度，然后返回移除的项，并且会改变原来的数组let brow = ['Google', 'Baidu', '360']console.log(brow.pop()) // brow =&gt; ['Google', 'Baidu']// shift() 方法从数组中删除第一个元素，并返回该元素的值。此方法更改数组的长度。let arr = [1, 3, 5, 7]console.log(arr.shift()) // arr =&gt; [3, 5, 7]/* * splice() 方法通过删除现有元素和/或添加新元素来更改一个数组的内容。 * array.splice(start, deleteCount, item1,...itemX) * start :必须 指定修改的开始位置（从0计数）。如果超出了数组的长度，则从数组末尾开始添加内容；如果是负值，则表示从数组末位开始* 的第几位（从-1计数）；若只使用start参数而不使用deleteCount、item，如：array.splice(start) ，表示删除[start，end]的* 元素。 * deleteCount 可选 整数，表示要移除的数组元素的个数。如果 deleteCount 是 0，则不移除元素。这种情况下，至少应添加一个新元素。如* 果 deleteCount 大于start 之后的元素的总数，则从 start 后面的元素都将被删除（含第 start 位）。 * item1...itemX 可选要添加进数组的元素,从start 位置开始。如果不指定，则 splice() 将只删除数组元素。 */ let arr = [1, 2, 3, 4, 5, 6, 7]// 从第2位开始删除0个元素，插入“drum” arr.splice(2, 0, 'a') //arr =&gt; [1, 2, "a", 3, 4, 5, 6, 7]// 从第3位开始删除1个元素arr.splice(3, 1) //arr =&gt; [1, 2, 3, 5, 6, 7]// 从第2位开始删除1个元素，然后插入“temp”arr.splice(2, 1, 'temp') //arr =&gt; [1, 2, 'temp', 4, 5, 6, 7]// 从第0位开始删除2个元素，然后插入"a1","a2"和"a3"arr.splice(0, 2, 'a1', 'a2', 'a3') //arr =&gt; ['a1', 'a2', 'a3', 3, 4, 5, 6, 7]// 从第2位开始删除2个元素arr.splice(arr.length - 3, 2) // arr =&gt; [1, 2, 5, 6, 7]// 从第2位开始删除所有元素arr.splice(2) // arr =&gt; [1, 2] 4. 可能遇到的问题12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849// 将数组中的数字相加求和let arr = [1, 2, 3, 4, 5, 6, 7]console.log(eval(arr.join('+')))// 模拟后端返回的数据格式let result = &#123; code: '200', data: [ &#123; id: 123, name: 'a1', age: 25 &#125;, &#123; id: 456, name: 'a2', age: 26 &#125;, &#123; id: 789, name: 'a3', age: 27 &#125; ]&#125;// 判断后端返回数据中是否存在id为456的数据const filter1 = function(id) &#123; let obj = [] const data = result.data data.forEach((item) =&gt; &#123; let id = item.id obj.push(id) &#125;) return obj.indexOf(id) &gt; -1 ? true : false&#125;filter1(456) // =&gt; truefilter1(4566) // =&gt; false// 获取id为456的数据const filterData = function (id) &#123; let obj = &#123;&#125; const data = result.data data.forEach((item) =&gt; &#123; let id = item.id obj[id] = item &#125;) return obj[id] ? obj[id] : []&#125;filterData(456) // =&gt; &#123;id: 456, name: "a2", age: 26&#125;filterData(4566) // =&gt; []]]></content>
+      <categories>
+        <category>Array</category>
+      </categories>
+      <tags>
+        <tag>Array</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用vue脚手架vue-cli配置多页面应用]]></title>
+    <url>%2F2018%2F05%2F05%2Fvue%E9%A1%B9%E7%9B%AEwebpack%E5%A4%9A%E9%A1%B5%E9%9D%A2%E6%9E%84%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[webpack常用插件 html-webpack-plugin // 生成一个html文件 clean-webpack-plugin // 清除dist文件夹中重复的文件 webpack-merger // 合并webpack配置文件 webpack-dev-server // 热启动 extract-text-webpack-plguin // 抽取样式文本 1.配置多入口123456789101112131415161718192021222324// utils.js// 查找符合特定规则的文件路径名var glob = require('glob')//获取多级的入口文件exports.getMultiEntry = function (globPath) &#123; var entries = &#123;&#125;, basename, tmp, pathname; glob.sync(globPath).forEach(function (entry) &#123; basename = path.basename(entry, path.extname(entry)); tmp = entry.split('/').splice(-4); var pathsrc = tmp[0] + '/' + tmp[1]; if (tmp[0] == 'src') &#123; pathsrc = tmp[1]; &#125; pathname = pathsrc + '/' + basename; // 正确输出js和html的路径 entries[pathname] = entry; &#125;); return entries;&#125; 2. 在webpack.base.conf.js中赋值给entry123456const utils = require('./utils')// 多页面设置入口文件const entries = utils.getMultiEntry('./src/' + config.moduleName + '/**/**/*.js');module.exports = &#123; entry: entries,&#125; 3. 构建生成多页面的HtmlWebpackPlugin配置12345678910111213141516// webpack.dev.conf.js webpack.prod.conf.js分别在webpack.dev.conf.js 和webpack.prod.conf.js中设置var pages = utils.getMultiEntry('./src/' + config.moduleName + '/**/**/*.html');for (var pathname in pages) &#123; var conf = &#123; filename: pathname + '.html', template: pages[pathname], // 模板路径 chunks: ['vendor', pathname], // 每个html引用的js模块 inject: true, // js插入位置 hash: true &#125;; webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));&#125;module.exports = webpackConfig 4. 简单的几步走，具体细节看项目代码使用vue脚手架vue-cli配置多页面应用]]></content>
+      <categories>
+        <category>webpack</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[理解Object]]></title>
+    <url>%2F2018%2F02%2F01%2Fobject%2F</url>
+    <content type="text"><![CDATA[1.创建对象的几种方法1.1创建对象的最简单的方法就是使用对象直接量1var emptyObj = &#123;&#125;; 1.2 通过new创建对象1var emptyObj = new Object(); 1.3 Object.create(prototype, [propertyObject])使用Object.create()创建一个新对象，其中第一个参数是对象的原型，第二个是可选参数，用于对对象的属性进行进一步的描述。propertyObject 为null时新创建的对象就不包括所有的属性和方法 var obj = Object.create(null) obj.toString =&gt; undefined Object.create应用场景(实现继承)1234567891011121314function Person() &#123;&#125;function Student() &#123;&#125; // 这样做的好处是修改子类的属性不会对父类造成影响，可以在Student实现自己的属性和方法，但有一点Object.create是ES5的时候才有的方法，不兼容低版本，如果想要使用Object.create可以事先判断一下Student.prototype = Object.create(Person.prototype)if (!Object.create) &#123; Object.create = function (proto) &#123; function N () &#123;&#125; N.prototype = proto; return N; &#125;&#125;// 对上面的继承进行扩展，有一种更加便利的方式;// 将Student原型对象中的构造函数指向PersonStudent.prototype.constructor = Person 对象中的getter setter方法1234567891011121314151617181920212223242526272829303132var objs = &#123; name: 'Bruce', get deelName() &#123; return this.name &#125;, set deelName(val) &#123; this.name = val &#125;&#125;// 获取属性值 objs.deelName =&gt; Bruce// 为对象属性赋值 objs.deelName = 'test'// 验证赋值=&gt; 'test'// objs.name =&gt; 'test'// 对象已有的属性添加特性描述var book = &#123; _year: 2004,&#125;Object.defineProperty(book, 'year', &#123; configurable: true, // 默认为true 是否可以配置（删除、修改、访问） enumerable: true, // 默认true 是否能枚举for-in writable: true, // 默认true 是否能修改属性的值 get: function() &#123; return this._year &#125;, set: function(newval) &#123; this._year = newval &#125;&#125;)// book.year =&gt; 2004// book.year = 2005// book.year =&gt; 2005]]></content>
+      <categories>
+        <category>Object</category>
+      </categories>
+      <tags>
+        <tag>Object</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[yum操作常用命令]]></title>
+    <url>%2F2018%2F01%2F31%2Fyum-not%2F</url>
+    <content type="text"><![CDATA[列出所有已安装的软件包1yum list installed yum针对软件包操作常用命令：1.使用YUM查找软件包1yum search 2.列出所有可安装的软件包1yum list 3.列出所有可更新的软件包1yum list updates 4.列出所有已安装的软件包1yum list installed 5.列出所有已安装但不在 Yum Repository 内的软件包1yum list extras 6.列出所指定的软件包1yum list 7.使用YUM获取软件包信息1yum info 8.列出所有软件包的信息1yum info 9.列出所有可更新的软件包信息1yum info updates 10.列出所有已安装的软件包信息1yum info installed 11.列出所有已安装但不在 Yum Repository 内的软件包信息1yum info extras 12.列出软件包提供哪些文件1yum provides]]></content>
+      <categories>
+        <category>yum</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>yum</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux常用命令]]></title>
+    <url>%2F2018%2F01%2F29%2Flinux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[1.命令的基本格式命令 选项 参数 ls -a 全部文件/包括隐藏文件 ls -l 显示详细信息ls -d 查看目录属性ls -i 显示inodels -lh 显示文件的字节大小 rw -r - - r - - 文件类型 （ - 文件 d 目录 i软链接文件）rw- r - - r - -u所有者 g所属组 o其他人r 读 w写 x执行 2.目录处理命令根目录和家目录是两个不同的概念 mkdir -p 目录-p 递归创建 cd+enter 进入当前用户的家目录cd ~ 进入当前用户的家目录cd - 进入上次目录cd .. 进入上一级目录cd . 进入当前目录 相对路径：参照的是我当前的目录绝对路径：具体的目标路径 按连续两次tab键：命全补充和目录补全pwd：打印当前位置的工作路径 3.删除文件或目录rm -rf 文件/目录 -r 删除目录-f 强制 4.复制文件或目录cp -r 原文件或目录 目标目录 -p 连带文件属性复制 -d 若源文件是链接文件，则复制链接属性 -a 相当于pdr 5.剪切或者改名命令mv 源文件或者目录 目标目录 6.目录介绍根目录下的bin和sbin， usr目录下的bin和sbin，这四个目录都是用来保存系统命令的。bin和sbin的区分：bin： 任何用户都可以执行sbin：只有root用户才能执行boot: 启动目录dev: 特殊文件保存目录lib: 函数库目录sys 和 proc: proc和sys目录不能直接操作，这两个目录保存的是内存的过载点。usr：系统软件资源目录var：系统相关命令media met misc 空目录 7.文件搜索命令 文件搜索命令locate(执行没有命令执行时需要安装 yum install locate)locate 文件名在后台数据库中按文件名搜索，搜索速度更快 /var/lib/mlocatelocate命令所搜索的后台数据库 updated更新数据库/etc/updatedb.conf 配置文件 命令搜索命令whereis与which whereis 命令名搜索命令所在路径及帮助文档所在位置 -b: 只查找可执行文件-m:只查找帮助文件 which 命令名 搜索命令所在路径及别名 文件搜索命令find find 搜索范围 搜索条件find / -name filelog.log find 是在系统中搜索符合条件的文件名，如果需要匹配，s会用通配符匹配，通配符是完全匹配。 find / -iname filelog.log 加i忽略大小写 find / -user root 按照所有者搜索 Linux中的通配符 匹配任意内容？匹配任意一个字符[] 匹配任意一个中括号内的字符]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>Linux命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mac环境下使用瓶子（Charles）抓包Https请求]]></title>
+    <url>%2F2017%2F12%2F19%2FCharles%2F</url>
+    <content type="text"><![CDATA[Charles 根证书配置1.选择 Charles 菜单“Help”-&gt;“SSL Proxying”-&gt;“Install Charles Root Certificate”2.接着会自动弹出‘钥匙串访问’，默认情况下 Charles Proxy CA证书不会被信任的，右键选择显示简介将证书修改为始终信任 SSL Proxying Settings选择菜单中“Proxy”-&gt;“SSL Proxying Settings…”添加使用通配符 Host Port ，表示抓取所有地址与端口的HTTPS请求 给手机安装证书打开Charles，在Menu选择Help &gt; SSL Proxying &gt; Install Charles Root Certificate on a Mobile Device or Remote Browse弹出一个弹框，根据提示使用手机访问地址： chls.pro/ssl 给手机安装证书 最后别忘了在手机中将瓶子证书设置为信任，不然请求就会一直返回unknown设置–&gt;通用–&gt;关于本机–&gt;证书信任设置把里面的那个Charles的证书设置为信任就可以了]]></content>
+      <categories>
+        <category>Charles</category>
+      </categories>
+      <tags>
+        <tag>Charles</tag>
+        <tag>mac Charles</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[nvm常用操作]]></title>
+    <url>%2F2017%2F11%2F17%2Fnvm%2F</url>
+    <content type="text"><![CDATA[1.安装nvm命令github.com nvm wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash 2.核实nvm是否安装成功，安装成功后执行命令返回’nvm’1command -v nvm 3.检查当前支持什么版本1nvm ls-remote 4.指定安装版本1nvm install vx.x.x 5.安装最新稳定版本1nvm install stable 6.删除某版本的node12nvm uninstall 4.4.0nvm uninstall default 7.nvm使用default的alias来实现默认版本,执行命令1nvm alias default vx.x.x 8.查看当前已经安装的版本1nvm ls 9.以指定版本执行脚本1nvm use v8.8.1 app.js 10.卸载nvm1rm -rf ~/.nvm 11.切换至x.x.x版本1nvm use vx.x.x 12.查看正在使用的版本1nvm current]]></content>
+      <categories>
+        <category>nvm</category>
+      </categories>
+      <tags>
+        <tag>nvm</tag>
+        <tag>mac nvm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mac电脑终端使用scp上传/下载文件/文件夹]]></title>
+    <url>%2F2017%2F11%2F15%2Fremote-scp%2F</url>
+    <content type="text"><![CDATA[1.从服务器下载文件到本地电脑1scp -r remote_username@remote_ip:remote_folder local_folder 例如： 1scp -r root@106.xx.xxx.xx:/root/www/file /Desktop/folder 2.从本地上传文件到服务器1scp -r local_folder remote_username@remote_ip:remote_folder 例如： 1scp -r /Desktop/folder root@106.xx.xxx.xx:/root/www/file 3.上传和下载文件就是把这种格式来回调换一下]]></content>
+      <categories>
+        <category>scp</category>
+      </categories>
+      <tags>
+        <tag>scp</tag>
+        <tag>mac scp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[利用mac终端将本地文件上传到服务器上]]></title>
+    <url>%2F2017%2F11%2F15%2Fremote-shell%2F</url>
+    <content type="text"><![CDATA[1.打开本地终端，使用菜单中Shell2.使用菜单中Shell 选择 “新建远程连接”3.进入“新建远程连接控制面板”后左侧服务选择“安全文件传输（sftp）”右侧服务器端添加自己的服务器连接ip地址，同时输入要使用的“用户”身份选择登录。4.开始上传本地文件，上传文件之前需要把文件在本地进行压缩 put 本地文件的地址链接 要上传到服务器的位置 1put Desktop/www/file.zip /www/file 5.在服务上对已上传的压缩文件进行解压 切换到文件当前目录下执行命令： 1unzip file.zip]]></content>
+      <categories>
+        <category>mac</category>
+        <category>shell</category>
+      </categories>
+      <tags>
+        <tag>shell</tag>
+        <tag>mac shell</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[express 路由(Router)]]></title>
+    <url>%2F2016%2F10%2F29%2Fexpress-router%2F</url>
+    <content type="text"><![CDATA[基本路由1.路由用于确定应用程序如何响应对特定端点的客户机请求，包含一个 URI（或路径）和一个特定的 HTTP 请求方法（GET、POST 等）。每个路由可以具有一个或多个处理程序函数，这些函数在路由匹配时执行。路由定义采用以下结构： 1app.METHOD(PATH, HANDLER) 其中：app 是 express 的实例。METHOD 是 HTTP 请求方法。PATH 是服务器上的路径。HANDLER 是在路由匹配时执行的函数。 2.在根路由 (/) 上（应用程序的主页）对 POST 请求进行响应：123app.put('/user', function (req, res) &#123; res.send('Got a PUT request at /user');&#125;); 有一种特殊路由方法：app.all()，它并非派生自 HTTP 方法。该方法用于在所有请求方法的路径中装入中间件函数。在以下示例中，无论您使用 GET、POST、PUT、DELETE 还是在 http 模块中支持的其他任何 HTTP 请求方法，都将为针对“/secret”的请求执行处理程序。 1234app.all('/secret', function (req, res, next) &#123;console.log('Accessing the secret section ...');next(); // pass control to the next handler&#125;); 路由路径路由路径与请求方法相结合，用于定义可以在其中提出请求的端点。路由路径可以是字符串、字符串模式或正则表达式。 Express 使用 path-to-regexp 来匹配路由路径；请参阅 path-to-regexp 文档以了解定义路由路径时所有的可能性。Express Route Tester 是用于测试基本 Express 路由的便捷工具，但是它不支持模式匹配。 以下是基于字符串的路由路径的一些示例。 此路由路径将请求与根路由 / 匹配。 123app.get('/', function (req, res) &#123; res.send('root');&#125;); 此路由路径将请求与 /about 匹配。 123app.get('/about', function (req, res) &#123; res.send('about');&#125;); 字符 ?、+、* 和 () 是其正则表达式同应项的子集。基于字符串的路径按字面理解连字符 (-) 和点 (.)。 express.Router使用 express.Router 类来创建可安装的模块化路由处理程序。Router 实例是完整的中间件和路由系统；因此，常常将其称为“微型应用程序”。 以下示例将路由器创建为模块，在其中装入中间件，定义一些路由，然后安装在主应用程序的路径中。 在应用程序目录中创建名为 birds.js 的路由器文件，其中包含以下内容： 12345678910111213141516var express = require('express');var router = express.Router();// middleware that is specific to this routerrouter.use(function timeLog(req, res, next) &#123; console.log('Time: ', Date.now()); next();&#125;);// define the home page routerouter.get('/', function(req, res) &#123; res.send('Birds home page');&#125;);// define the about routerouter.get('/about', function(req, res) &#123; res.send('About birds');&#125;);module.exports = router; 接着，在应用程序中装入路由器模块：123var birds = require('./birds');...app.use('/birds', birds); 此应用程序现在可处理针对 /birds 和 /birds/about 的请求，调用特定于此路由的 timeLog 中间件函数。]]></content>
+      <categories>
+        <category>Express</category>
+      </categories>
+      <tags>
+        <tag>Express</tag>
+        <tag>express.Router</tag>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vue filter]]></title>
+    <url>%2F2016%2F10%2F10%2Fvue-filter%2F</url>
+    <content type="text"><![CDATA[Vue过滤器的基本使用html部分123456789101112131415161718192021222324&lt;div id="app"&gt; &lt;!--插值中的表达式--&gt; &lt;input type="text" v-model="msg"&gt; &lt;h2&gt;&#123;&#123; msg ? 'YES' : 'NO' &#125;&#125;&lt;/h2&gt; &lt;h2&gt;&#123;&#123; msg.split('').reverse().join('') | uppercase &#125;&#125;&lt;/h2&gt; &lt;h2&gt;&#123;&#123; number + 1 | currency '₫' 0 &#125;&#125;&lt;/h2&gt; &lt;!--自定义过滤器--&gt; &lt;h2&gt; &#123;&#123; filterParam | customFilter&#125;&#125;&lt;/h2&gt; &lt;!-- 1.limitBy - test 2.限制只显示数字中前两条数据 --&gt; &lt;ul&gt; &lt;li v-for="item in dataArray | limitBy 2"&gt;name: &#123;&#123; item.name &#125;&#125;----age: &#123;&#123; item.age &#125;&#125;&lt;/li&gt; &lt;/ul&gt; &lt;!-- 1.filterBy - test 2.过滤出对象中name属性字段含有‘Chuck’值的数据，并且只显示该数据 3.in 后面可以跟多字段进行搜索 --&gt; &lt;ul&gt; &lt;li v-for="item in dataArray | filterBy 'Chuck123' in 'name' 'temp'"&gt;name: &#123;&#123; item.name &#125;&#125;----age: &#123;&#123; item.age &#125;&#125;&lt;/li&gt; &lt;/ul&gt;&lt;/div&gt; js部分12345678910111213141516171819202122/** * 1.split 将字符串分割成数组 * 2.filter 接受两个参数，第一个是自定义名称，第二个是一个函数，并将值作为参数使用最后返回处理后的值 * 3.reverse 用于颠倒数组之前的顺序 * join 将数组按照指定分隔符进行分割，并返回一个字符串 * */ Vue.filter('customFilter', function(value) &#123; return value.split('').reverse().join('') &#125;) var vm = new Vue(&#123; el: '#app', data: &#123; msg: 'world', number: 148547, filterParam: 'small text!', dataArray: [ &#123;'name': 'Bruce', 'age': 1&#125;, &#123;'name': 'Chuck', 'age': 2, 'temp': 'Chuck123'&#125;, &#123;'name': 'Jack', 'age': 3&#125;, ] &#125; &#125;)]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>Vue-filter</tag>
+      </tags>
+  </entry>
+</search>
