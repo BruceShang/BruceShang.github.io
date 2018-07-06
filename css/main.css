@@ -942,7 +942,7 @@ pre .javascript .function {
   font-size: 14px;
   color: #555;
   background: #fff;
-  border: 2px solid #555;
+  border: 1px solid #999;
   text-decoration: none;
   border-radius: 2px;
   transition-property: background-color;
@@ -952,9 +952,9 @@ pre .javascript .function {
   line-height: 2;
 }
 .btn:hover {
-  border-color: #222;
+  border-color: #007fff;
   color: #fff;
-  background: #222;
+  background: #007fff;
 }
 .btn +.btn {
   margin: 0 0 8px 8px;
@@ -1946,7 +1946,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #084583;
+  background: #ff81ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3243,4 +3243,55 @@ pre .javascript .function {
   .pagination {
     margin: 8px 0 0;
   }
+}
+body {
+  background: url("/images/bg02.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+.post-body p a {
+  color: #0593d3;
+  border-bottom: none;
+  border-bottom: 1px solid #0593d3;
+}
+.post-body p a:hover {
+  color: #fc6423;
+  border-bottom: none;
+  border-bottom: 1px solid #fc6423;
+}
+.content-wrap {
+  min-height: calc(100vh - 87px);
+  background: rgba(255,255,255,0.9);
+}
+.post-block,
+.header-inner,
+.sidebar-inner {
+  margin-top: 0px !important;
+  box-shadow: none !important;
+  background: rgba(255,255,255,0.7);
+}
+#music-player .fluid-vids {
+  margin-bottom: 0px !important;
+}
+.headband {
+  height: 2px;
+  background: #007fff;
+}
+.site-meta {
+  background: rgba(26,134,250,0.9);
+}
+.site-subtitle {
+  color: #fff;
+}
+.site-author-image {
+  border-radius: 50%;
+}
+blockquote {
+  border-left: 4px solid #dad9d9;
+  background-color: #f7f3f3;
+}
+.posts-expand .post-title-link::before {
+  background-color: #007fff;
 }
