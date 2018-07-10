@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[构建自己的npm包-初体验]]></title>
+    <url>%2F2018%2F07%2F10%2F%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84npm%E5%8C%85-%E5%88%9D%E4%BD%93%E9%AA%8C%2F</url>
+    <content type="text"><![CDATA[为什么要使用NPMNPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种： 允许用户从NPM服务器下载别人编写的第三方包到本地使用。 允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。 允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。 由于新版的nodejs已经集成了npm，所以之前npm也一并安装好了。同样可以通过输入 “npm -v” 来测试是否成功安装。命令如下，出现版本提示表示安装成功: 15.6.0 1. 先在本地构建一个demo的项目，创建index.js文件1234// index.jsmodule.exports.helloWorld = function() &#123; return 'Hello World!'&#125; 2. npm 初始化创建package.json文件1npm init 3. 先在npmjs官网上注册一个自己的账号 注册成功后，打开命令行工具。1npm login 根据命令提示输入用户名密码，登录后可以查询自己的账号 1npm whoami 4. 这些做完准备工作就都准备完了，现在开始上传npm包 cmd进入demo目录，执行下面命令1npm publish 如果第一次名称没有冲突和符合npm命名规范的话，就直接上传成功了 特别注意，每次发包都要更改版本号 5. 使用npm包1234// 先安装刚刚上传的包npm i test-package-name --save-dev// 再引用let test = require('test-package-name')]]></content>
+      <categories>
+        <category>npm</category>
+      </categories>
+      <tags>
+        <tag>npm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[iTem2 + oh my zsh + agnoster 打造自己的终端工具]]></title>
     <url>%2F2018%2F07%2F06%2FiTem2-oh-my-zsh-agnoster-%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E7%BB%88%E7%AB%AF%E5%B7%A5%E5%85%B7%2F</url>
     <content type="text"><![CDATA[1. 安装iTem2iTerm2传送门，选择要下载的安装包 2. oh-my-zsh介绍 oh-my-zsh是基于zsh的功能做了一个扩展，方便的插件管理、主题自定义，以及漂亮的自动完成效果 安装zsh12brew install zsh// 出现这个画面后就代码安装成功 没有安装homebrew的先安装一下homebrew官网 复制下面命令，在终端中输入：1/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" brew 安装插件的时候默认都会进行更新，这个是特别慢的毕竟有道墙，手动设置关闭自动更新，在终端中执行下面代码。 1export HOMEBREW_NO_AUTO_UPDATE=true 查看当前默认bash，修改默认shell1chsh -s /bin/zsh 修改完之后验证是否修改成功12echo $SHELL// 此时终端打印出 /bin/zsh 恭喜你设置成功 下载安装PowerFonts字体123456# git clonegit clone https://github.com/powerline/fonts.git --depth=1# cd to foldercd fonts# run install shell./install.sh 安装好字体库之后，我们来设置iTerm2的字体，具体的操作是iTerm2 -&gt; Preferences -&gt; Profiles -&gt; Text，在Font区域选中Change Font，然后找到Meslo LG字体。有L、M、S可选，看个人喜好： 配置agnoster主题安装成功之后，我们可以通过vi ~/.zshrc，设置ZSH_THEME=”agnoster”对主题进行修改。 最终效果图 命令补全123456789cd ~/.oh-my-zsh/custom/plugins/git clone https://github.com/zsh-users/zsh-autosuggestionsvi ~/.zshrc// 找到plugins，修改内容plugins=( git zsh-autosuggestions)// 默认打开里面已经有一个git 效果展示 安装高亮插件123456789cd ~/.oh-my-zsh/custom/plugins/git clone https://github.com/zsh-users/zsh-syntax-highlighting.gitvi ~/.zshrc// 找到plugins，修改内容plugins=( git zsh-autosuggestions zsh-syntax-highlighting) zsh-syntax-highlighting必须在最后一个。 然后在文件的最后一行添加：1source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 按一下esc调出vi命令，输入:wq保存并退出vi模式。 执行命令使刚才的修改生效：1source ~/.zshrc 配置完成]]></content>
