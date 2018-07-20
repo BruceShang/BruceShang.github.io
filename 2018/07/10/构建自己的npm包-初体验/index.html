@@ -87,16 +87,17 @@
 <meta name="description" content="为什么要使用NPMNPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：  允许用户从NPM服务器下载别人编写的第三方包到本地使用。 允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。 允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。   由于新版的nodejs已经集成了npm，所以之前npm也一并安装好了。同">
 <meta name="keywords" content="npm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="构建自己的npm包-初体验">
+<meta property="og:title" content="构建自己的npm包">
 <meta property="og:url" content="http://bruceshang.github.io/2018/07/10/构建自己的npm包-初体验/index.html">
 <meta property="og:site_name" content="前端个人博客">
 <meta property="og:description" content="为什么要使用NPMNPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：  允许用户从NPM服务器下载别人编写的第三方包到本地使用。 允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。 允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。   由于新版的nodejs已经集成了npm，所以之前npm也一并安装好了。同">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://bruceshang.github.io/images/npm-init.png">
 <meta property="og:image" content="http://bruceshang.github.io/images/npm-login.png">
-<meta property="og:updated_time" content="2018-07-10T03:59:19.000Z">
+<meta property="og:image" content="http://bruceshang.github.io/images/npm-error.png">
+<meta property="og:updated_time" content="2018-07-20T06:12:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="构建自己的npm包-初体验">
+<meta name="twitter:title" content="构建自己的npm包">
 <meta name="twitter:description" content="为什么要使用NPMNPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：  允许用户从NPM服务器下载别人编写的第三方包到本地使用。 允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。 允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。   由于新版的nodejs已经集成了npm，所以之前npm也一并安装好了。同">
 <meta name="twitter:image" content="http://bruceshang.github.io/images/npm-init.png">
 
@@ -134,7 +135,7 @@
 
 
 
-  <title>构建自己的npm包-初体验 | 前端个人博客</title>
+  <title>构建自己的npm包 | 前端个人博客</title>
   
 
 
@@ -330,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">构建自己的npm包-初体验</h1>
+          <h1 class="post-title" itemprop="name headline">构建自己的npm包</h1>
         
 
         <div class="post-meta">
@@ -393,7 +394,7 @@
 
           
           
-             <span id="/2018/07/10/构建自己的npm包-初体验/" class="leancloud_visitors" data-flag-title="构建自己的npm包-初体验">
+             <span id="/2018/07/10/构建自己的npm包-初体验/" class="leancloud_visitors" data-flag-title="构建自己的npm包">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,7 +419,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  412
+                  547
                 </span>
               
 
@@ -483,6 +484,20 @@
 <p>特别注意，每次发包都要更改版本号</p>
 </blockquote>
 <h3 id="5-使用npm包"><a href="#5-使用npm包" class="headerlink" title="5. 使用npm包"></a>5. 使用npm包</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先安装刚刚上传的包</span></span><br><span class="line">npm i test-package-name --save-dev</span><br><span class="line"><span class="comment">// 再引用</span></span><br><span class="line"><span class="keyword">let</span> test = <span class="built_in">require</span>(<span class="string">'test-package-name'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="6-定义作用于模块"><a href="#6-定义作用于模块" class="headerlink" title="6. 定义作用于模块"></a>6. 定义作用于模块</h3><blockquote>
+<p>防止构建新包命名时和别人的重复，造成发布失败。我们可以使用自己的用户名来定义一个作用域，每个npm用户都有一个以自己名为作用域。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@username/project-name</span><br></pre></td></tr></table></figure>
+<h3 id="7-发布作用于模块"><a href="#7-发布作用于模块" class="headerlink" title="7. 发布作用于模块"></a>7. 发布作用于模块</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+<ul>
+<li>报错了，什么鬼👻</li>
+</ul>
+<p><img src="/images/npm-error.png" alt=""></p>
+<blockquote>
+<p>原来是npm默认发布的是私有包，要想成功发包，添加access=public参数，发布成公用包<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish --access=public</span><br></pre></td></tr></table></figure></p>
+<p>现在是不是已经发布成功了</p>
+</blockquote>
+
       
     </div>
     
@@ -526,7 +541,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://bruceshang.github.io/2018/07/10/构建自己的npm包-初体验/" title="构建自己的npm包-初体验">http://bruceshang.github.io/2018/07/10/构建自己的npm包-初体验/</a>
+    <a href="http://bruceshang.github.io/2018/07/10/构建自己的npm包-初体验/" title="构建自己的npm包">http://bruceshang.github.io/2018/07/10/构建自己的npm包-初体验/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -743,7 +758,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用NPM"><span class="nav-number">1.</span> <span class="nav-text">为什么要使用NPM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-先在本地构建一个demo的项目，创建index-js文件"><span class="nav-number">1.1.</span> <span class="nav-text">1. 先在本地构建一个demo的项目，创建index.js文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-npm-初始化创建package-json文件"><span class="nav-number">1.2.</span> <span class="nav-text">2. npm 初始化创建package.json文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-先在npmjs官网上注册一个自己的账号"><span class="nav-number">1.3.</span> <span class="nav-text">3. 先在npmjs官网上注册一个自己的账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-这些做完准备工作就都准备完了，现在开始上传npm包"><span class="nav-number">1.4.</span> <span class="nav-text">4. 这些做完准备工作就都准备完了，现在开始上传npm包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-使用npm包"><span class="nav-number">1.5.</span> <span class="nav-text">5. 使用npm包</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用NPM"><span class="nav-number">1.</span> <span class="nav-text">为什么要使用NPM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-先在本地构建一个demo的项目，创建index-js文件"><span class="nav-number">1.1.</span> <span class="nav-text">1. 先在本地构建一个demo的项目，创建index.js文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-npm-初始化创建package-json文件"><span class="nav-number">1.2.</span> <span class="nav-text">2. npm 初始化创建package.json文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-先在npmjs官网上注册一个自己的账号"><span class="nav-number">1.3.</span> <span class="nav-text">3. 先在npmjs官网上注册一个自己的账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-这些做完准备工作就都准备完了，现在开始上传npm包"><span class="nav-number">1.4.</span> <span class="nav-text">4. 这些做完准备工作就都准备完了，现在开始上传npm包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-使用npm包"><span class="nav-number">1.5.</span> <span class="nav-text">5. 使用npm包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-定义作用于模块"><span class="nav-number">1.6.</span> <span class="nav-text">6. 定义作用于模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-发布作用于模块"><span class="nav-number">1.7.</span> <span class="nav-text">7. 发布作用于模块</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -786,7 +801,7 @@
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">5.5k</span>
+    <span title="站点总字数">5.6k</span>
   
 </div>
 <span id="busuanzi_container_site_pv">
@@ -919,7 +934,7 @@
         var disqus_config = function () {
           this.page.url = 'http://bruceshang.github.io/2018/07/10/构建自己的npm包-初体验/';
           this.page.identifier = '2018/07/10/构建自己的npm包-初体验/';
-          this.page.title = '构建自己的npm包-初体验';
+          this.page.title = '构建自己的npm包';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://bruceshang.disqus.com/embed.js';
