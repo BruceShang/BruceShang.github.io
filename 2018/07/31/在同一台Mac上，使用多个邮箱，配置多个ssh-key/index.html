@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="前端个人博客">
 <meta property="og:description" content="前言介绍 自己开始用自己的邮箱，注册了ssh key，将公钥添加到了github上，但现在公司要求使用企业邮箱生成公钥，将使用公司的企业邮箱生成的公钥添加到自己公司搭建的gitlab私服上，由此以来开始了下面的折腾。同时使用多个邮箱，注册多个公钥。  1.先使用自己的邮箱生成第一个key12// 在终端中执行ssh-keygen -t rsa -C &quot;yourEmail@xxx.com&quot;  第一个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-31T12:35:36.000Z">
+<meta property="og:updated_time" content="2018-07-31T12:36:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在同一台Mac上，使用多个邮箱，配置多个ssh key">
 <meta name="twitter:description" content="前言介绍 自己开始用自己的邮箱，注册了ssh key，将公钥添加到了github上，但现在公司要求使用企业邮箱生成公钥，将使用公司的企业邮箱生成的公钥添加到自己公司搭建的gitlab私服上，由此以来开始了下面的折腾。同时使用多个邮箱，注册多个公钥。  1.先使用自己的邮箱生成第一个key12// 在终端中执行ssh-keygen -t rsa -C &quot;yourEmail@xxx.com&quot;  第一个">
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  638
+                  637
                 </span>
               
 
@@ -469,9 +469,10 @@
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter file <span class="keyword">in</span> which to save the key (<span class="regexp">/Users/</span>Shinancao/.ssh/id_rsa): id_rsa_customName</span><br></pre></td></tr></table></figure>
 <ul>
-<li>现在，再执行命令 <code>open ~/.ssh<code>命令，我们能看到 .ssh文件中又多了两个秘钥</code></code></li>
+<li>现在，再执行命令 <code>open ~/.ssh<code>命令，我们能看到 .ssh文件中又多了两个秘钥<a id="more"></a>
+<h3 id="3-在-ssh文件夹中创建一个config文件"><a href="#3-在-ssh文件夹中创建一个config文件" class="headerlink" title="3.在.ssh文件夹中创建一个config文件"></a>3.在.ssh文件夹中创建一个config文件</h3></code></code></li>
 </ul>
-<h3 id="3-在-ssh文件夹中创建一个config文件"><a href="#3-在-ssh文件夹中创建一个config文件" class="headerlink" title="3.在.ssh文件夹中创建一个config文件"></a>3.在.ssh文件夹中创建一个config文件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~<span class="regexp">/.ssh/</span>config</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~<span class="regexp">/.ssh/</span>config</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>配置config</p>
 </blockquote>
