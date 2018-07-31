@@ -309,6 +309,228 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://bruceshang.github.io/2018/07/31/在同一台Mac上，使用多个邮箱，配置多个ssh-key/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/31/在同一台Mac上，使用多个邮箱，配置多个ssh-key/" itemprop="url">在同一台Mac上，使用多个邮箱，配置多个ssh key</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-31T19:34:57+08:00">
+                2018-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ssh-key/" itemprop="url" rel="index">
+                    <span itemprop="name">ssh key</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/31/在同一台Mac上，使用多个邮箱，配置多个ssh-key/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/31/在同一台Mac上，使用多个邮箱，配置多个ssh-key/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/07/31/在同一台Mac上，使用多个邮箱，配置多个ssh-key/" class="leancloud_visitors" data-flag-title="在同一台Mac上，使用多个邮箱，配置多个ssh key">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  638
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言介绍"><a href="#前言介绍" class="headerlink" title="前言介绍"></a>前言介绍</h2><blockquote>
+<p>自己开始用自己的邮箱，注册了ssh key，将公钥添加到了github上，但现在公司要求使用企业邮箱生成公钥，将使用公司的企业邮箱生成的公钥添加到自己公司搭建的gitlab私服上，由此以来开始了下面的折腾。同时使用多个邮箱，注册多个公钥。</p>
+</blockquote>
+<h3 id="1-先使用自己的邮箱生成第一个key"><a href="#1-先使用自己的邮箱生成第一个key" class="headerlink" title="1.先使用自己的邮箱生成第一个key"></a>1.先使用自己的邮箱生成第一个key</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在终端中执行</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"yourEmail@xxx.com"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第一个key一路回车,生成以后，在终端中执行下面命令进行查看</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open ~<span class="regexp">/.ssh</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>此时，.ssh文件中多个两个文件 id_rsa 私钥，id_rsa.pub</li>
+</ul>
+<h3 id="2-在使用公司邮箱生成第二个key"><a href="#2-在使用公司邮箱生成第二个key" class="headerlink" title="2.在使用公司邮箱生成第二个key"></a>2.在使用公司邮箱生成第二个key</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在终端中执行</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"companyEmail@xxx.com"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>回车以后：在下面的操作中，给第二个key取一个名字，用于区分。如果一路回车会覆盖掉第一次生成的秘钥。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter file <span class="keyword">in</span> which to save the key (<span class="regexp">/Users/</span>Shinancao/.ssh/id_rsa): id_rsa_customName</span><br></pre></td></tr></table></figure>
+<ul>
+<li>现在，再执行命令 <code>open ~/.ssh<code>命令，我们能看到 .ssh文件中又多了两个秘钥</code></code></li>
+</ul>
+<h3 id="3-在-ssh文件夹中创建一个config文件"><a href="#3-在-ssh文件夹中创建一个config文件" class="headerlink" title="3.在.ssh文件夹中创建一个config文件"></a>3.在.ssh文件夹中创建一个config文件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~<span class="regexp">/.ssh/</span>config</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置config</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># github</span><br><span class="line"></span><br><span class="line">Host github</span><br><span class="line">HostName github.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~<span class="regexp">/.ssh/i</span>d_rsa</span><br><span class="line">User github注册的用户名</span><br><span class="line"></span><br><span class="line"># custome-gitlab</span><br><span class="line"></span><br><span class="line">Host company <span class="comment">// 别名</span></span><br><span class="line">HostName <span class="number">192.168</span><span class="number">.11</span>.XXX <span class="comment">// 公司服务器ip</span></span><br><span class="line">port <span class="number">10080</span> <span class="comment">// 端口号</span></span><br><span class="line">PreferredAuthentications publickey <span class="comment">// 强制使用Public Key验证</span></span><br><span class="line">IdentityFile ~<span class="regexp">/.ssh/i</span>d_rsa_nyso <span class="comment">// 密钥文件的路径</span></span><br><span class="line">User 注册的用户名</span><br></pre></td></tr></table></figure>
+<h3 id="4-使用的过程会报错，那是因为我们还没有加载刚才的配置"><a href="#4-使用的过程会报错，那是因为我们还没有加载刚才的配置" class="headerlink" title="4.使用的过程会报错，那是因为我们还没有加载刚才的配置"></a>4.使用的过程会报错，那是因为我们还没有加载刚才的配置</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看当前rsa list</span></span><br><span class="line">ssh-add -l </span><br><span class="line"></span><br><span class="line"><span class="comment">//如果列表中没有新增的rsa， 添加identifile</span></span><br><span class="line">ssh-add ~<span class="regexp">/.ssh/i</span>d_rsa</span><br><span class="line">ssh-add ~<span class="regexp">/.ssh/i</span>d_rsa_customName</span><br><span class="line"><span class="comment">// 再去操作就没有问题了</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-设置全局的用户名和邮箱"><a href="#5-设置全局的用户名和邮箱" class="headerlink" title="5.设置全局的用户名和邮箱"></a>5.设置全局的用户名和邮箱</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"your name"</span></span><br><span class="line">git config --global user.email <span class="string">"your email"</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-查看配置的结果"><a href="#6-查看配置的结果" class="headerlink" title="6.查看配置的结果"></a>6.查看配置的结果</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name</span><br><span class="line">git config --global user.email</span><br></pre></td></tr></table></figure>
+<h3 id="7-设置全局后默认都是，全局配置用户名和邮箱。如果我们想针对不同的仓库，使用不同的用户名和邮箱呢？"><a href="#7-设置全局后默认都是，全局配置用户名和邮箱。如果我们想针对不同的仓库，使用不同的用户名和邮箱呢？" class="headerlink" title="7.设置全局后默认都是，全局配置用户名和邮箱。如果我们想针对不同的仓库，使用不同的用户名和邮箱呢？"></a>7.设置全局后默认都是，全局配置用户名和邮箱。如果我们想针对不同的仓库，使用不同的用户名和邮箱呢？</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先取消全局设置</span></span><br><span class="line">git config --global --unset user.name</span><br><span class="line">git config --global --unset user.email</span><br><span class="line"></span><br><span class="line"><span class="comment">// 再进入项目目录下设置</span></span><br><span class="line">git config user.email <span class="string">"your name"</span></span><br><span class="line">git config user.email <span class="string">"your email"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看配置结果</span></span><br><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
+<h3 id="8-大功告成，可以下班回家喽。😁"><a href="#8-大功告成，可以下班回家喽。😁" class="headerlink" title="8.大功告成，可以下班回家喽。😁"></a>8.大功告成，可以下班回家喽。😁</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://bruceshang.github.io/2018/07/20/在Mac电脑上使用tree生成目录结构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1111,214 +1333,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://bruceshang.github.io/2018/05/05/vue项目webpack多页面构建/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/05/vue项目webpack多页面构建/" itemprop="url">使用vue脚手架vue-cli配置多页面应用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-05T17:41:22+08:00">
-                2018-05-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/05/vue项目webpack多页面构建/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/05/vue项目webpack多页面构建/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/05/05/vue项目webpack多页面构建/" class="leancloud_visitors" data-flag-title="使用vue脚手架vue-cli配置多页面应用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  352
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="webpack常用插件"><a href="#webpack常用插件" class="headerlink" title="webpack常用插件"></a>webpack常用插件</h4><blockquote>
-<ol>
-<li>html-webpack-plugin // 生成一个html文件</li>
-<li>clean-webpack-plugin // 清除dist文件夹中重复的文件</li>
-<li>webpack-merger // 合并webpack配置文件</li>
-<li>webpack-dev-server  // 热启动</li>
-<li>extract-text-webpack-plguin // 抽取样式文本</li>
-</ol>
-</blockquote>
-<h3 id="1-配置多入口"><a href="#1-配置多入口" class="headerlink" title="1.配置多入口"></a>1.配置多入口</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// utils.js</span></span><br><span class="line"><span class="comment">// 查找符合特定规则的文件路径名</span></span><br><span class="line"><span class="keyword">var</span> glob = <span class="built_in">require</span>(<span class="string">'glob'</span>)</span><br><span class="line"><span class="comment">//获取多级的入口文件</span></span><br><span class="line">exports.getMultiEntry = <span class="function"><span class="keyword">function</span> (<span class="params">globPath</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> entries = &#123;&#125;,</span><br><span class="line">    basename, tmp, pathname;</span><br><span class="line"></span><br><span class="line">  glob.sync(globPath).forEach(<span class="function"><span class="keyword">function</span> (<span class="params">entry</span>) </span>&#123;</span><br><span class="line">    basename = path.basename(entry, path.extname(entry));</span><br><span class="line">    tmp = entry.split(<span class="string">'/'</span>).splice(<span class="number">-4</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> pathsrc = tmp[<span class="number">0</span>] + <span class="string">'/'</span> + tmp[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (tmp[<span class="number">0</span>] == <span class="string">'src'</span>) &#123;</span><br><span class="line">      pathsrc = tmp[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    pathname = pathsrc + <span class="string">'/'</span> + basename; <span class="comment">// 正确输出js和html的路径</span></span><br><span class="line">    entries[pathname] = entry;</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> entries;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/05/vue项目webpack多页面构建/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1373,7 +1387,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1384,7 +1398,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1395,7 +1409,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1490,7 +1504,7 @@
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">6.3k</span>
+    <span title="站点总字数">6.9k</span>
   
 </div>
 <span id="busuanzi_container_site_pv">
