@@ -235,16 +235,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-movie">
-          <a href="/categories/movie" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-film"></i> <br />
-            
-            电影
-          </a>
-        </li>
-      
 
       
         <li class="menu-item menu-item-search">
@@ -477,9 +467,8 @@
 <h3 id="9-http缓存分类"><a href="#9-http缓存分类" class="headerlink" title="9.http缓存分类"></a>9.http缓存分类</h3><ul>
 <li>强制缓存<blockquote>
 <p>在缓存数据未失效的情况下，不需要再和服务器发生交互</p>
-<h4 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h4><p>  我们在demo.js中添加了一个Expires响应头，不过由于是格林尼治时间，所以通过momentjs转换一下。第一次请求的时候还是会向服务器发起请求，同时会把过期时间和文件一起返回给我们；但是当我们刷新的时候，才是见证奇迹的时刻：<br>可以看出文件是直接从缓存（memory cache）中读取的，并没有发起请求。我们在这边设置过期时间为两分钟，两分钟过后可以刷新一下页面看到浏览器再次发送请求了。<br>  虽然这种方式添加了缓存控制，节省流量，但是还是有以下几个问题的：</p>
 </blockquote>
-</li>
+<h4 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h4>  我们在demo.js中添加了一个Expires响应头，不过由于是格林尼治时间，所以通过momentjs转换一下。第一次请求的时候还是会向服务器发起请求，同时会把过期时间和文件一起返回给我们；但是当我们刷新的时候，才是见证奇迹的时刻：<br>可以看出文件是直接从缓存（memory cache）中读取的，并没有发起请求。我们在这边设置过期时间为两分钟，两分钟过后可以刷新一下页面看到浏览器再次发送请求了。<br>  虽然这种方式添加了缓存控制，节省流量，但是还是有以下几个问题的：</li>
 </ul>
 <p>由于浏览器时间和服务器时间不同步，如果浏览器设置了一个很后的时间，过期时间一直没有用<br>缓存过期后，不管文件有没有发生变化，服务器都会再次读取文件返回给浏览器</p>
 <p>  不过Expires 是HTTP 1.0的东西，现在默认浏览器均默认使用HTTP 1.1，所以它的作用基本忽略。</p>

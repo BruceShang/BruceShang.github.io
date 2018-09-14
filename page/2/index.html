@@ -232,16 +232,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-movie">
-          <a href="/categories/movie" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-film"></i> <br />
-            
-            电影
-          </a>
-        </li>
-      
 
       
         <li class="menu-item menu-item-search">
@@ -655,6 +645,7 @@
       
         
           <h4 id="webpack常用插件"><a href="#webpack常用插件" class="headerlink" title="webpack常用插件"></a>webpack常用插件</h4><blockquote>
+</blockquote>
 <ol>
 <li>html-webpack-plugin // 生成一个html文件</li>
 <li>clean-webpack-plugin // 清除dist文件夹中重复的文件</li>
@@ -662,7 +653,6 @@
 <li>webpack-dev-server  // 热启动</li>
 <li>extract-text-webpack-plguin // 抽取样式文本</li>
 </ol>
-</blockquote>
 <h3 id="1-配置多入口"><a href="#1-配置多入口" class="headerlink" title="1.配置多入口"></a>1.配置多入口</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// utils.js</span></span><br><span class="line"><span class="comment">// 查找符合特定规则的文件路径名</span></span><br><span class="line"><span class="keyword">var</span> glob = <span class="built_in">require</span>(<span class="string">'glob'</span>)</span><br><span class="line"><span class="comment">//获取多级的入口文件</span></span><br><span class="line">exports.getMultiEntry = <span class="function"><span class="keyword">function</span> (<span class="params">globPath</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> entries = &#123;&#125;,</span><br><span class="line">    basename, tmp, pathname;</span><br><span class="line"></span><br><span class="line">  glob.sync(globPath).forEach(<span class="function"><span class="keyword">function</span> (<span class="params">entry</span>) </span>&#123;</span><br><span class="line">    basename = path.basename(entry, path.extname(entry));</span><br><span class="line">    tmp = entry.split(<span class="string">'/'</span>).splice(<span class="number">-4</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> pathsrc = tmp[<span class="number">0</span>] + <span class="string">'/'</span> + tmp[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (tmp[<span class="number">0</span>] == <span class="string">'src'</span>) &#123;</span><br><span class="line">      pathsrc = tmp[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    pathname = pathsrc + <span class="string">'/'</span> + basename; <span class="comment">// 正确输出js和html的路径</span></span><br><span class="line">    entries[pathname] = entry;</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> entries;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
