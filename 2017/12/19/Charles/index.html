@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="前端个人博客">
 <meta property="og:description" content="Charles 根证书配置1.选择 Charles 菜单“Help”-&amp;gt;“SSL Proxying”-&amp;gt;“Install Charles Root Certificate”2.接着会自动弹出‘钥匙串访问’，默认情况下 Charles Proxy CA证书不会被信任的，右键选择显示简介将证书修改为始终信任 SSL Proxying Settings选择菜单中“Proxy”-&amp;gt;“SS">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-05T07:35:14.000Z">
+<meta property="og:updated_time" content="2018-11-13T07:46:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac环境下使用瓶子（Charles）抓包Https请求">
 <meta name="twitter:description" content="Charles 根证书配置1.选择 Charles 菜单“Help”-&amp;gt;“SSL Proxying”-&amp;gt;“Install Charles Root Certificate”2.接着会自动弹出‘钥匙串访问’，默认情况下 Charles Proxy CA证书不会被信任的，右键选择显示简介将证书修改为始终信任 SSL Proxying Settings选择菜单中“Proxy”-&amp;gt;“SS">
@@ -405,7 +405,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  220
+                  341
                 </span>
               
 
@@ -444,7 +444,15 @@
       
         <h5 id="Charles-根证书配置"><a href="#Charles-根证书配置" class="headerlink" title="Charles 根证书配置"></a>Charles 根证书配置</h5><p>1.选择 Charles 菜单“Help”-&gt;“SSL Proxying”-&gt;“Install Charles Root Certificate”<br>2.接着会自动弹出‘钥匙串访问’，默认情况下 Charles Proxy CA证书不会被信任的，右键选择显示简介将证书修改为始终信任</p>
 <h5 id="SSL-Proxying-Settings"><a href="#SSL-Proxying-Settings" class="headerlink" title="SSL Proxying Settings"></a>SSL Proxying Settings</h5><p>选择菜单中“Proxy”-&gt;“SSL Proxying Settings…”添加使用通配符 Host Port ，表示抓取所有地址与端口的HTTPS请求<br><a id="more"></a></p>
-<h5 id="给手机安装证书"><a href="#给手机安装证书" class="headerlink" title="给手机安装证书"></a>给手机安装证书</h5><p>打开Charles，在Menu选择Help &gt; SSL Proxying &gt; Install Charles Root Certificate on a Mobile Device or Remote Browse<br>弹出一个弹框，根据提示使用手机访问地址： chls.pro/ssl 给手机安装证书</p>
+<h5 id="给手机安装证书"><a href="#给手机安装证书" class="headerlink" title="给手机安装证书"></a>给手机安装证书</h5><ol>
+<li><p>设置手机代理（IP地址为电脑ip），端口号为Proxy &gt; Proxies &gt; HTTP Proxy 中设置的端口号</p>
+</li>
+<li><p>打开Charles，在Menu选择Help &gt; SSL Proxying &gt; Install Charles Root Certificate on a Mobile Device or Remote Browse<br>弹出一个弹框，根据提示使用手机访问地址： chls.pro/ssl 给手机安装证书</p>
+</li>
+</ol>
+<h6 id="安卓手机需要注意（Android设备安装-pem证书文件）"><a href="#安卓手机需要注意（Android设备安装-pem证书文件）" class="headerlink" title="安卓手机需要注意（Android设备安装.pem证书文件）"></a>安卓手机需要注意（Android设备安装.pem证书文件）</h6><ol>
+<li>Android设备，只有部分设备的默认浏览器会识别.pem这个格式，而其他浏览器和一些机型不能自己安装这个文件。需要在设置中找到，类似于 安全与隐私，这一项，然后从存储设备中安装。</li>
+</ol>
 <h5 id="最后别忘了在手机中将瓶子证书设置为信任，不然请求就会一直返回unknown"><a href="#最后别忘了在手机中将瓶子证书设置为信任，不然请求就会一直返回unknown" class="headerlink" title="最后别忘了在手机中将瓶子证书设置为信任，不然请求就会一直返回unknown"></a>最后别忘了在手机中将瓶子证书设置为信任，不然请求就会一直返回unknown</h5><p>设置–&gt;通用–&gt;关于本机–&gt;证书信任设置<br>把里面的那个Charles的证书设置为信任就可以了</p>
 
       
@@ -713,7 +721,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Charles-根证书配置"><span class="nav-number">1.</span> <span class="nav-text">Charles 根证书配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SSL-Proxying-Settings"><span class="nav-number">2.</span> <span class="nav-text">SSL Proxying Settings</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#给手机安装证书"><span class="nav-number">3.</span> <span class="nav-text">给手机安装证书</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最后别忘了在手机中将瓶子证书设置为信任，不然请求就会一直返回unknown"><span class="nav-number">4.</span> <span class="nav-text">最后别忘了在手机中将瓶子证书设置为信任，不然请求就会一直返回unknown</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Charles-根证书配置"><span class="nav-number">1.</span> <span class="nav-text">Charles 根证书配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SSL-Proxying-Settings"><span class="nav-number">2.</span> <span class="nav-text">SSL Proxying Settings</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#给手机安装证书"><span class="nav-number">3.</span> <span class="nav-text">给手机安装证书</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#安卓手机需要注意（Android设备安装-pem证书文件）"><span class="nav-number">3.1.</span> <span class="nav-text">安卓手机需要注意（Android设备安装.pem证书文件）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最后别忘了在手机中将瓶子证书设置为信任，不然请求就会一直返回unknown"><span class="nav-number">4.</span> <span class="nav-text">最后别忘了在手机中将瓶子证书设置为信任，不然请求就会一直返回unknown</span></a></li></ol></div>
             
 
           </div>
@@ -755,7 +763,7 @@
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">9.4k</span>
+    <span title="站点总字数">9.5k</span>
   
 </div>
 <span id="busuanzi_container_site_pv">
