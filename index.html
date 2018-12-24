@@ -444,46 +444,18 @@
 
       
         
-          
-            <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><blockquote>
+          <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><blockquote>
 <p>Node 版本要求<br>Vue CLI 需要 Node.js 8.9 或更高版本 (推荐 8.11.0+)。你可以使用 nvm 或 nvm-windows 在同一台电脑中管理多个 Node 版本。</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br><span class="line"># OR</span><br><span class="line">yarn global add @vue/cli</span><br></pre></td></tr></table></figure>
 <h4 id="检查版本是否正确（3-x）"><a href="#检查版本是否正确（3-x）" class="headerlink" title="检查版本是否正确（3.x）"></a>检查版本是否正确（3.x）</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue --version</span><br></pre></td></tr></table></figure>
-<h3 id="如果需要使用旧版本的-vue-init-功能，可以全局安装一个桥接工具："><a href="#如果需要使用旧版本的-vue-init-功能，可以全局安装一个桥接工具：" class="headerlink" title="如果需要使用旧版本的 vue init 功能，可以全局安装一个桥接工具："></a>如果需要使用旧版本的 vue init 功能，可以全局安装一个桥接工具：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli-init</span><br></pre></td></tr></table></figure>
-<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create projectName</span><br></pre></td></tr></table></figure>
-<p><br>这里我选择自定义项目</p>
-<p><img src="/images/cli3/cli1.png" alt=""></p>
-<p>选择自己项目中需要安装的包，选择后点击‘空格’选中，回车下一步：</p>
-<p><img src="/images/cli3/cli2.png" alt=""></p>
-<p>输入‘Y’路由使用history模式</p>
-<p><img src="/images/cli3/cli3.png" alt=""></p>
-<p>选择一个自己喜欢的css预处理器，这里我选择了stylus</p>
-<p><img src="/images/cli3/cli4.png" alt=""></p>
-<p>选择eslint 标准</p>
-<p><img src="/images/cli3/cli5.png" alt=""></p>
-<p>保存lint<br><img src="/images/cli3/cli6.png" alt=""></p>
-<p>选择将Babel,postCSS, ESLint配置在专用配置文件中，还是在pakage.json中。</p>
-<p><img src="/images/cli3/cli7.png" alt=""></p>
-<h3 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
-<h3 id="启动后可能碰到的问题"><a href="#启动后可能碰到的问题" class="headerlink" title="启动后可能碰到的问题"></a>启动后可能碰到的问题</h3><ul>
-<li><p>问题：</p>
-<p><img src="/images/cli3/invalid.png" alt=""><br><a href="https://github.com/webpack/webpack-dev-server/issues/1604" target="_blank" rel="noopener">解决方案</a></p>
-</li>
-</ul>
-<h3 id="如何在webpack中添加的配置呢？"><a href="#如何在webpack中添加的配置呢？" class="headerlink" title="如何在webpack中添加的配置呢？"></a>如何在webpack中添加的配置呢？</h3><ol>
-<li><p>首先在项目最外层创建一个vue.config.js的文件，configureWebpack选项提供一个对象,该对象将会被 webpack-merge 合并入最终的 webpack 配置。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  configureWebpack: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'production'</span>) &#123;</span><br><span class="line">      <span class="comment">// 为生产环境修改配置...</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 为开发环境修改配置...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="我们习惯了再vue-cli-2-x中配置文件别名，那么在vue-cli-3-x中如何配置？"><a href="#我们习惯了再vue-cli-2-x中配置文件别名，那么在vue-cli-3-x中如何配置？" class="headerlink" title="我们习惯了再vue-cli 2.x中配置文件别名，那么在vue-cli 3.x中如何配置？"></a>我们习惯了再vue-cli 2.x中配置文件别名，那么在vue-cli 3.x中如何配置？</h3></li>
-</ol>
-<ol>
-<li>还是在vue.config.js 文件中配置chainWebpack对象</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">dir</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> path.join(__dirname, dir)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  chainWebpack: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">    config.resolve.alias</span><br><span class="line">      .set(<span class="string">'@'</span>, resolve(<span class="string">'src'</span>))</span><br><span class="line">      .set(<span class="string">'assets'</span>, resolve(<span class="string">'src/assets'</span>))</span><br><span class="line">      .set(<span class="string">'views'</span>, resolve(<span class="string">'src/views'</span>))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://cli.vuejs.org/zh/config/#%E5%85%A8%E5%B1%80-cli-%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">更多关于vue.config.js文件的配置</a></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>vue-cli 2.x的时候配置文件都暴露在项目中，对于多人协同开发的项目，开发人员有时候会自主根据自己的意愿进行修改，对于刚入手vue的人来说多人开发很容易把项目改乱，对于管理员维护不方便。以前使用2.x的时候，我都是把项目中的依赖、配置文件单独提出来，抽出一个单独的SDK打成npm包，发到线上。现在vue-cli 3.x已经把这些配置文件都抽成了npm包，同时只预留一些配置入口，着实方便不少，在项目中只需简单的配置就完成了一个项目搭建。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/24/vue-cli-3-x使用配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
