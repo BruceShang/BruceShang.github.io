@@ -299,6 +299,246 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://bruceshang.github.io/2019/01/04/使用Jenkins搭建前端构建环境/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/04/使用Jenkins搭建前端构建环境/" itemprop="url">使用Jenkins搭建前端构建环境</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-04T14:01:41+08:00">
+                2019-01-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端工具/" itemprop="url" rel="index">
+                    <span itemprop="name">前端工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/04/使用Jenkins搭建前端构建环境/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/01/04/使用Jenkins搭建前端构建环境/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/01/04/使用Jenkins搭建前端构建环境/" class="leancloud_visitors" data-flag-title="使用Jenkins搭建前端构建环境">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  775
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>1.CentOS服务器<br>2.Jenkins<br>3.github账号<br>4.Nginx</p>
+<h2 id="这里Nginx的配置就不多说了，有兴趣的话可以参考前面的文章"><a href="#这里Nginx的配置就不多说了，有兴趣的话可以参考前面的文章" class="headerlink" title="这里Nginx的配置就不多说了，有兴趣的话可以参考前面的文章"></a>这里Nginx的配置就不多说了，有兴趣的话可以参考前面的文章</h2><p><a href="http://localhost:4000/2018/12/26/%E5%90%8C%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8Anginx%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AA%E6%9C%8D%E5%8A%A1%E7%AB%99%E7%82%B9%E5%85%B1%E7%94%A880%E7%AB%AF%E5%8F%A3/" target="_blank" rel="noopener">同台服务器上nginx配置多个服务站点共用80端口</a></p>
+<h2 id="服务器环境配置"><a href="#服务器环境配置" class="headerlink" title="服务器环境配置"></a>服务器环境配置</h2><blockquote>
+<p><a href="https://jenkins.io/doc/book/installing/" target="_blank" rel="noopener">先将Jenkins网站中的Jenkins存储库添加到包管理器中</a></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/jenkins.repo http:<span class="comment">//pkg.jenkins-ci.org/redhat/jenkins.repo</span></span><br><span class="line">rpm --<span class="keyword">import</span> https:<span class="comment">//jenkins-ci.org/redhat/jenkins-ci.org.key</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>下载安装java和git依赖包</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install java</span><br><span class="line">yum install git</span><br></pre></td></tr></table></figure>
+<h2 id="登录服务器生成ssh-key"><a href="#登录服务器生成ssh-key" class="headerlink" title="登录服务器生成ssh key"></a>登录服务器生成ssh key</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置提交用户名和邮箱</span></span><br><span class="line">git config --global user.name <span class="string">"xxx"</span></span><br><span class="line">git config --global user.email <span class="string">"xxxx@qq.com"</span></span><br><span class="line"><span class="comment">// 开始生成key</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"yourEmail@xxx.com"</span></span><br></pre></td></tr></table></figure>
+<p>一路回车后就成功生成了<br><img src="/images/jenkins/4.png" alt=""></p>
+<h5 id="测试一下ssh是否能成功使用"><a href="#测试一下ssh是否能成功使用" class="headerlink" title="测试一下ssh是否能成功使用"></a>测试一下ssh是否能成功使用</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh github.com</span><br></pre></td></tr></table></figure>
+<p>出现下面情况代表可以正常使用<br><img src="/images/jenkins/6.png" alt=""></p>
+<p>最后：拷贝服务器中的公钥添加到github中</p>
+<h2 id="什么是jenkins呢"><a href="#什么是jenkins呢" class="headerlink" title="什么是jenkins呢?"></a>什么是<a href="https://jenkins.io/doc/#what-is-jenkins" target="_blank" rel="noopener">jenkins</a>呢?</h2><blockquote>
+<p>Jenkins是一个独立的开源自动化服务器，可用于自动执行与构建，测试，交付或部署软件相关的各种任务。<br>Jenkins可以通过本机系统软件包，Docker安装，甚至可以由安装了Java Runtime Environment（JRE）的任何机器独立运行。</p>
+</blockquote>
+<h2 id="安装Jenkins"><a href="#安装Jenkins" class="headerlink" title="安装Jenkins"></a>安装Jenkins</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install jenkins</span><br></pre></td></tr></table></figure>
+<h2 id="Jenkins配置"><a href="#Jenkins配置" class="headerlink" title="Jenkins配置"></a>Jenkins配置</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 进入Jenkins配置文件地址：</span></span><br><span class="line">vim /etc/sysconfig/jenkins</span><br></pre></td></tr></table></figure>
+<h5 id="Jenkins配置文件中的几个重要的参数"><a href="#Jenkins配置文件中的几个重要的参数" class="headerlink" title="Jenkins配置文件中的几个重要的参数"></a>Jenkins配置文件中的几个重要的参数</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JENKINS_HOME=<span class="string">"/var/lib/jenkins"</span> <span class="comment">// Jenkins存储配置和工作的目录</span></span><br><span class="line">JENKINS_USER=<span class="string">"root"</span> <span class="comment">// 将字段值修改root权限</span></span><br><span class="line"><span class="comment">// 注意：Jenkins默认的端口号是8080，需要修改的可以在这里修改</span></span><br><span class="line">JENKINS_PORT=<span class="string">"8082"</span> <span class="comment">// Jenkins端口号</span></span><br></pre></td></tr></table></figure>
+<h2 id="启动Jenkins"><a href="#启动Jenkins" class="headerlink" title="启动Jenkins"></a>启动Jenkins</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service jenkins restart</span><br></pre></td></tr></table></figure>
+<h2 id="启动成功后我们在浏览器中输入ip地址和端口号，进入解锁页面"><a href="#启动成功后我们在浏览器中输入ip地址和端口号，进入解锁页面" class="headerlink" title="启动成功后我们在浏览器中输入ip地址和端口号，进入解锁页面"></a>启动成功后我们在浏览器中输入ip地址和端口号，进入解锁页面</h2><p><img src="/images/jenkins/pwd.png" alt=""></p>
+<h2 id="输入密码后，继续进入下一步，进入新手页面。"><a href="#输入密码后，继续进入下一步，进入新手页面。" class="headerlink" title="输入密码后，继续进入下一步，进入新手页面。"></a>输入密码后，继续进入下一步，进入新手页面。</h2><blockquote>
+<p>选择第一个推荐插件安装<br><img src="/images/jenkins/new-page.png" alt=""></p>
+</blockquote>
+<h2 id="安装中…"><a href="#安装中…" class="headerlink" title="安装中…"></a>安装中…</h2><p><img src="/images/jenkins/install.png" alt=""></p>
+<h2 id="创建管理员用户"><a href="#创建管理员用户" class="headerlink" title="创建管理员用户"></a>创建管理员用户</h2><p><img src="/images/jenkins/1.png" alt=""></p>
+<h2 id="实例配置"><a href="#实例配置" class="headerlink" title="实例配置"></a>实例配置</h2><p><img src="/images/jenkins/2.png" alt=""></p>
+<h2 id="创建任务"><a href="#创建任务" class="headerlink" title="创建任务"></a>创建任务</h2><p><img src="/images/jenkins/3.png" alt=""></p>
+<h2 id="构建一个自由风格的软件项目"><a href="#构建一个自由风格的软件项目" class="headerlink" title="构建一个自由风格的软件项目"></a>构建一个自由风格的软件项目</h2><p><img src="/images/jenkins/new-task.png" alt=""></p>
+<h2 id="安装两个插件"><a href="#安装两个插件" class="headerlink" title="安装两个插件"></a>安装两个插件</h2><p>系统管理&gt;插件管理&gt;可选插件中搜索并安装，安装成功后需要重启</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 部署项目时需要执行node安装依赖</span></span><br><span class="line"><span class="number">1.</span>NodeJS Plugin </span><br><span class="line"><span class="comment">// 实现jenkins将服务器构建打包好的war包自动发布到应用服务器，并部署运行</span></span><br><span class="line"><span class="number">2.</span>Publish Over SSH</span><br></pre></td></tr></table></figure>
+<h2 id="进入-系统管理-gt-系统设置页面配置"><a href="#进入-系统管理-gt-系统设置页面配置" class="headerlink" title="进入 系统管理 =&gt; 系统设置页面配置"></a>进入 系统管理 =&gt; 系统设置页面配置</h2><h5 id="Jenkins-Location"><a href="#Jenkins-Location" class="headerlink" title="Jenkins Location"></a>Jenkins Location</h5><p>Jenkins服务器地址<br><img src="/images/jenkins/17.png" alt=""></p>
+<h2 id="Publish-over-SSH配置"><a href="#Publish-over-SSH配置" class="headerlink" title="Publish over SSH配置"></a>Publish over SSH配置</h2><p><a href="https://wiki.jenkins.io/display/JENKINS/Publish+Over+SSH+Plugin" target="_blank" rel="noopener">Publish over SSH</a></p>
+<p><img src="/images/jenkins/18.png" alt=""></p>
+<p>这里有一点容易出错：<br>Jenkins服务器（A）<br>应用服务器（B）</p>
+<p>应用服务器（B）上创建~/.ssh文件夹和~/.ssh/authorized_keys文件，并将jenkins服务器(A)的公钥id_rsa.pub中的内容复制到authorized_keys文件</p>
+<p>应用服务器上重启ssh服务，service sshd restart</p>
+<p>现在jenkins服务器可免密码直接登陆应用服务器</p>
+<h2 id="开始任务配置"><a href="#开始任务配置" class="headerlink" title="开始任务配置"></a>开始任务配置</h2><p><img src="/images/jenkins/12.png" alt=""></p>
+<h2 id="构建环境"><a href="#构建环境" class="headerlink" title="构建环境"></a>构建环境</h2><p><img src="/images/jenkins/13.png" alt=""></p>
+<h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p><img src="/images/jenkins/14.png" alt=""></p>
+<h2 id="选择Send-build-artifacts-over-SSH配置"><a href="#选择Send-build-artifacts-over-SSH配置" class="headerlink" title="选择Send build artifacts over SSH配置"></a>选择Send build artifacts over SSH配置</h2><p><img src="/images/jenkins/16.png" alt=""></p>
+<h2 id="构建后操作"><a href="#构建后操作" class="headerlink" title="构建后操作"></a>构建后操作</h2><p><img src="/images/jenkins/15.png" alt=""></p>
+<h2 id="测试一下部署发布"><a href="#测试一下部署发布" class="headerlink" title="测试一下部署发布"></a>测试一下部署发布</h2><p><img src="/images/jenkins/19.png" alt=""><br><img src="/images/jenkins/20.png" alt=""></p>
+<h2 id="完美部署"><a href="#完美部署" class="headerlink" title="完美部署"></a>完美部署</h2><h2 id="暂时先写这么多吧，有空会继续更新…"><a href="#暂时先写这么多吧，有空会继续更新…" class="headerlink" title="暂时先写这么多吧，有空会继续更新…"></a>暂时先写这么多吧，有空会继续更新…</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://bruceshang.github.io/2019/01/02/使用Yeoman制作自己的脚手架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1100,208 +1340,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://bruceshang.github.io/2018/09/25/vue-cli-build打包后CSS浏览器兼容前缀自动去除的问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/25/vue-cli-build打包后CSS浏览器兼容前缀自动去除的问题/" itemprop="url">vue-cli build打包后CSS浏览器兼容前缀自动去除的问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-25T09:54:42+08:00">
-                2018-09-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue-cli/" itemprop="url" rel="index">
-                    <span itemprop="name">vue-cli</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/25/vue-cli-build打包后CSS浏览器兼容前缀自动去除的问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/25/vue-cli-build打包后CSS浏览器兼容前缀自动去除的问题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/09/25/vue-cli-build打包后CSS浏览器兼容前缀自动去除的问题/" class="leancloud_visitors" data-flag-title="vue-cli build打包后CSS浏览器兼容前缀自动去除的问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  376
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>今天做练手项目部署的时候碰到了个奇怪问题，开发环境里显示得好好的CSS prefixer样式，到production环境就消失了。<br>我开发环境用的是 scss ，刚开始我还以为是 scss 处理器的问题，后来研究了下 build 脚本，发现人家把CSS统一用一个<a href="https://github.com/NMFR/optimize-css-assets-webpack-plugin" target="_blank" rel="noopener">插件</a>给压缩了，然后追查之下发现这个插件用了 <a href="https://postcss.org/" target="_blank" rel="noopener">postCSS</a> 的 <a href="https://github.com/postcss/autoprefixer" target="_blank" rel="noopener">autoprefixer</a> 插件。<br>这下问题就清楚了，因为 autoprefixer 插件会针对支持的浏览器进行CSS 前缀的删除和追加。</p>
-<p>比如：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">          <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译成：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/25/vue-cli-build打包后CSS浏览器兼容前缀自动去除的问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1356,7 +1394,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1378,7 +1416,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1472,7 +1510,7 @@
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">11.6k</span>
+    <span title="站点总字数">12.4k</span>
   
 </div>
 <span id="busuanzi_container_site_pv">
