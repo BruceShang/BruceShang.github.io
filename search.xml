@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[使用Generic Webhook Trigger插件实现Jenkins+WebHooks（码云）持续集成]]></title>
+    <url>%2F2019%2F05%2F09%2F%E4%BD%BF%E7%94%A8Generic%20Webhook%20Trigger%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0Jenkins%2BWebHooks%EF%BC%88%E7%A0%81%E4%BA%91%EF%BC%89%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%2F</url>
+    <content type="text"><![CDATA[一、下载插件安装Generic Webhook Trigger插件在“系统设置–插件管理–可选插件”界面搜索：Generic Webhook Trigger，可以看到，点击安装，然后重启。 二、构建触发 三、配置用户和Security 四、配置码云WebHooks 找到WebHooks配置界面，在POST地址框中输入如下格式内容： 1http://&lt;User ID&gt;:&lt;API Token&gt;@&lt;Jenkins IP地址&gt;:端口/generic-webhook-trigger/invoke 12// 例：http://admin:1156a09fc1c858c800a9e88a2c276@107.12.84.144:8082/generic-webhook-trigger/invoke User ID：既是“三（1）”中的User ID，我的是admin API Token：既是“三（1）”中的API Token Jenkins IP地址：就是你的Jenkins的服务器IP地址，这个必须是公网IP地址。 端口：就是Jenkins服务器的端口 测试接口成功 自动发布成功 本文参考文章Jenkins系列1.使用Jenkins搭建前端构建环境2.Jenkins安装插件动态获取git分支3.使用Generic Webhook Trigger插件实现Jenkins+WebHooks（码云）持续集成]]></content>
+      <categories>
+        <category>前端工具</category>
+      </categories>
+      <tags>
+        <tag>Jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Jenkins安装插件动态获取git分支]]></title>
     <url>%2F2019%2F05%2F09%2FJenkins%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E5%8A%A8%E6%80%81%E8%8E%B7%E5%8F%96git%E5%88%86%E6%94%AF%2F</url>
-    <content type="text"><![CDATA[一、下载插件在管理中选插件，搜索Git Parameter点击安装。 二、参数化配置1、选择项目-设置-General-选择参数化构建过程 &gt; 添加Git Parameter 配置分支信息 2、源码管理配 三、完成 本文转载链接地址]]></content>
+    <content type="text"><![CDATA[一、下载插件在管理中选插件，搜索Git Parameter点击安装。 二、参数化配置1、选择项目-设置-General-选择参数化构建过程 &gt; 添加Git Parameter 配置分支信息 2、源码管理配 三、完成 本文转载链接地址Jenkins系列1.使用Jenkins搭建前端构建环境2.Jenkins安装插件动态获取git分支3.使用Generic Webhook Trigger插件实现Jenkins+WebHooks（码云）持续集成]]></content>
       <categories>
         <category>前端工具</category>
       </categories>
@@ -26,7 +37,7 @@
   <entry>
     <title><![CDATA[使用Jenkins搭建前端构建环境]]></title>
     <url>%2F2019%2F01%2F04%2F%E4%BD%BF%E7%94%A8Jenkins%E6%90%AD%E5%BB%BA%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前期准备1.CentOS服务器2.Jenkins3.github账号4.Nginx 这里Nginx的配置就不多说了，有兴趣的话可以参考前面的文章同台服务器上nginx配置多个服务站点共用80端口 服务器环境配置 先将Jenkins网站中的Jenkins存储库添加到包管理器中 12wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.reporpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key 下载安装java和git依赖包 12yum install javayum install git 登录服务器生成ssh key12345// 设置提交用户名和邮箱git config --global user.name "xxx"git config --global user.email "xxxx@qq.com"// 开始生成keyssh-keygen -t rsa -C "yourEmail@xxx.com" 一路回车后就成功生成了 测试一下ssh是否能成功使用1ssh github.com 出现下面情况代表可以正常使用 最后：拷贝服务器中的公钥添加到github中 什么是jenkins呢? Jenkins是一个独立的开源自动化服务器，可用于自动执行与构建，测试，交付或部署软件相关的各种任务。Jenkins可以通过本机系统软件包，Docker安装，甚至可以由安装了Java Runtime Environment（JRE）的任何机器独立运行。 安装Jenkins1yum install jenkins Jenkins配置12// 进入Jenkins配置文件地址：vim /etc/sysconfig/jenkins Jenkins配置文件中的几个重要的参数1234JENKINS_HOME="/var/lib/jenkins" // Jenkins存储配置和工作的目录JENKINS_USER="root" // 将字段值修改root权限// 注意：Jenkins默认的端口号是8080，需要修改的可以在这里修改JENKINS_PORT="8082" // Jenkins端口号 启动Jenkins1service jenkins restart 启动成功后我们在浏览器中输入ip地址和端口号，进入解锁页面 输入密码后，继续进入下一步，进入新手页面。 选择第一个推荐插件安装 安装中… 创建管理员用户 实例配置 创建任务 构建一个自由风格的软件项目 安装两个插件系统管理&gt;插件管理&gt;可选插件中搜索并安装，安装成功后需要重启 1234// 部署项目时需要执行node安装依赖1.NodeJS Plugin // 实现jenkins将服务器构建打包好的war包自动发布到应用服务器，并部署运行2.Publish Over SSH 进入 系统管理 =&gt; 系统设置页面配置Jenkins LocationJenkins服务器地址 Publish over SSH配置Publish over SSH 这里有一点容易出错：Jenkins服务器（A）应用服务器（B） 应用服务器（B）上创建~/.ssh文件夹和~/.ssh/authorized_keys文件，并将jenkins服务器(A)的公钥id_rsa.pub中的内容复制到authorized_keys文件 应用服务器上重启ssh服务，service sshd restart 现在jenkins服务器可免密码直接登陆应用服务器 开始任务配置 源码管理的凭据和 api的凭据不是一样的，apiv5的凭据是插件调用码云接口使用的，而源码管理的凭据是jenkins git插件要求的，这&gt; 个凭据格式是用户名密码，如果用的是http的协议需要在凭据管理中再配置一个码云用户名密码的凭据，这样才能选上，如果是ssh 的话&gt; 需要jenkins的机器的ssh key 加入到码云账号中才行 凭据 》系统 》添加域 构建环境系统管理 》全局工具配置 》NodeJS；如果不添加nodejs在下面 NodeJS Installation 中将不会出来内容 构建 选择Send build artifacts over SSH配置 构建后操作 测试一下部署发布 完美部署暂时先写这么多吧，有空会继续更新…]]></content>
+    <content type="text"><![CDATA[前期准备1.CentOS服务器2.Jenkins3.github账号4.Nginx 这里Nginx的配置就不多说了，有兴趣的话可以参考前面的文章同台服务器上nginx配置多个服务站点共用80端口 服务器环境配置 先将Jenkins网站中的Jenkins存储库添加到包管理器中 12wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.reporpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key 下载安装java和git依赖包 12yum install javayum install git 登录服务器生成ssh key12345// 设置提交用户名和邮箱git config --global user.name "xxx"git config --global user.email "xxxx@qq.com"// 开始生成keyssh-keygen -t rsa -C "yourEmail@xxx.com" 一路回车后就成功生成了 测试一下ssh是否能成功使用1ssh github.com 出现下面情况代表可以正常使用 最后：拷贝服务器中的公钥添加到github中 什么是jenkins呢? Jenkins是一个独立的开源自动化服务器，可用于自动执行与构建，测试，交付或部署软件相关的各种任务。Jenkins可以通过本机系统软件包，Docker安装，甚至可以由安装了Java Runtime Environment（JRE）的任何机器独立运行。 安装Jenkins1yum install jenkins Jenkins配置12// 进入Jenkins配置文件地址：vim /etc/sysconfig/jenkins Jenkins配置文件中的几个重要的参数1234JENKINS_HOME="/var/lib/jenkins" // Jenkins存储配置和工作的目录JENKINS_USER="root" // 将字段值修改root权限// 注意：Jenkins默认的端口号是8080，需要修改的可以在这里修改JENKINS_PORT="8082" // Jenkins端口号 启动Jenkins1service jenkins restart 启动成功后我们在浏览器中输入ip地址和端口号，进入解锁页面 输入密码后，继续进入下一步，进入新手页面。 选择第一个推荐插件安装 安装中… 创建管理员用户 实例配置 创建任务 构建一个自由风格的软件项目 安装两个插件系统管理&gt;插件管理&gt;可选插件中搜索并安装，安装成功后需要重启 1234// 部署项目时需要执行node安装依赖1.NodeJS Plugin // 实现jenkins将服务器构建打包好的war包自动发布到应用服务器，并部署运行2.Publish Over SSH 进入 系统管理 =&gt; 系统设置页面配置Jenkins LocationJenkins服务器地址 Publish over SSH配置Publish over SSH 这里有一点容易出错：Jenkins服务器（A）应用服务器（B） 应用服务器（B）上创建~/.ssh文件夹和~/.ssh/authorized_keys文件，并将jenkins服务器(A)的公钥id_rsa.pub中的内容复制到authorized_keys文件 应用服务器上重启ssh服务，service sshd restart 现在jenkins服务器可免密码直接登陆应用服务器 开始任务配置 源码管理的凭据和 api的凭据不是一样的，apiv5的凭据是插件调用码云接口使用的，而源码管理的凭据是jenkins git插件要求的，这&gt; 个凭据格式是用户名密码，如果用的是http的协议需要在凭据管理中再配置一个码云用户名密码的凭据，这样才能选上，如果是ssh 的话&gt; 需要jenkins的机器的ssh key 加入到码云账号中才行 凭据 》系统 》添加域 构建环境系统管理 》全局工具配置 》NodeJS；如果不添加nodejs在下面 NodeJS Installation 中将不会出来内容 构建 选择Send build artifacts over SSH配置 构建后操作 测试一下部署发布 完美部署暂时先写这么多吧，有空会继续更新…Jenkins系列1.使用Jenkins搭建前端构建环境2.Jenkins安装插件动态获取git分支3.使用Generic Webhook Trigger插件实现Jenkins+WebHooks（码云）持续集成]]></content>
       <categories>
         <category>前端工具</category>
       </categories>
