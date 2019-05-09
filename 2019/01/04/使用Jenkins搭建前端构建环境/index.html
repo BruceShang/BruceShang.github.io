@@ -103,6 +103,7 @@
 <meta property="og:image" content="http://bruceshang.github.io/images/jenkins/new-task.png">
 <meta property="og:image" content="http://bruceshang.github.io/images/jenkins/17.png">
 <meta property="og:image" content="http://bruceshang.github.io/images/jenkins/18.png">
+<meta property="og:image" content="http://bruceshang.github.io/images/jenkins/jenkins-pingzheng.png">
 <meta property="og:image" content="http://bruceshang.github.io/images/jenkins/12.png">
 <meta property="og:image" content="http://bruceshang.github.io/images/jenkins/13.png">
 <meta property="og:image" content="http://bruceshang.github.io/images/jenkins/14.png">
@@ -110,7 +111,7 @@
 <meta property="og:image" content="http://bruceshang.github.io/images/jenkins/15.png">
 <meta property="og:image" content="http://bruceshang.github.io/images/jenkins/19.png">
 <meta property="og:image" content="http://bruceshang.github.io/images/jenkins/20.png">
-<meta property="og:updated_time" content="2019-01-04T07:50:25.964Z">
+<meta property="og:updated_time" content="2019-05-09T03:31:15.524Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Jenkins搭建前端构建环境">
 <meta name="twitter:description" content="前期准备1.CentOS服务器2.Jenkins3.github账号4.Nginx 这里Nginx的配置就不多说了，有兴趣的话可以参考前面的文章同台服务器上nginx配置多个服务站点共用80端口">
@@ -434,7 +435,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  775
+                  935
                 </span>
               
 
@@ -450,7 +451,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -512,8 +513,12 @@
 <p>应用服务器（B）上创建~/.ssh文件夹和~/.ssh/authorized_keys文件，并将jenkins服务器(A)的公钥id_rsa.pub中的内容复制到authorized_keys文件</p>
 <p>应用服务器上重启ssh服务，service sshd restart</p>
 <p>现在jenkins服务器可免密码直接登陆应用服务器</p>
-<h2 id="开始任务配置"><a href="#开始任务配置" class="headerlink" title="开始任务配置"></a>开始任务配置</h2><p><img src="/images/jenkins/12.png" alt=""></p>
-<h2 id="构建环境"><a href="#构建环境" class="headerlink" title="构建环境"></a>构建环境</h2><p><img src="/images/jenkins/13.png" alt=""></p>
+<h2 id="开始任务配置"><a href="#开始任务配置" class="headerlink" title="开始任务配置"></a>开始任务配置</h2><blockquote>
+<p>源码管理的凭据和 api的凭据不是一样的，apiv5的凭据是插件调用码云接口使用的，而源码管理的凭据是jenkins git插件要求的，这&gt; 个凭据格式是用户名密码，如果用的是http的协议需要在凭据管理中再配置一个码云用户名密码的凭据，这样才能选上，如果是ssh 的话&gt; 需要jenkins的机器的ssh key 加入到码云账号中才行</p>
+</blockquote>
+<h3 id="凭据-》系统-》添加域"><a href="#凭据-》系统-》添加域" class="headerlink" title="凭据 》系统 》添加域"></a>凭据 》系统 》添加域</h3><p><img src="/images/jenkins/jenkins-pingzheng.png" alt=""></p>
+<p><img src="/images/jenkins/12.png" alt=""></p>
+<h2 id="构建环境"><a href="#构建环境" class="headerlink" title="构建环境"></a>构建环境</h2><h4 id="系统管理-》全局工具配置-》NodeJS；如果不添加nodejs在下面-NodeJS-Installation-中将不会出来内容"><a href="#系统管理-》全局工具配置-》NodeJS；如果不添加nodejs在下面-NodeJS-Installation-中将不会出来内容" class="headerlink" title="系统管理 》全局工具配置 》NodeJS；如果不添加nodejs在下面 NodeJS Installation 中将不会出来内容"></a>系统管理 》全局工具配置 》NodeJS；如果不添加nodejs在下面 NodeJS Installation 中将不会出来内容</h4><p><img src="/images/jenkins/13.png" alt=""></p>
 <h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p><img src="/images/jenkins/14.png" alt=""></p>
 <h2 id="选择Send-build-artifacts-over-SSH配置"><a href="#选择Send-build-artifacts-over-SSH配置" class="headerlink" title="选择Send build artifacts over SSH配置"></a>选择Send build artifacts over SSH配置</h2><p><img src="/images/jenkins/16.png" alt=""></p>
 <h2 id="构建后操作"><a href="#构建后操作" class="headerlink" title="构建后操作"></a>构建后操作</h2><p><img src="/images/jenkins/15.png" alt=""></p>
@@ -693,7 +698,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -807,7 +812,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这里Nginx的配置就不多说了，有兴趣的话可以参考前面的文章"><span class="nav-number">2.</span> <span class="nav-text">这里Nginx的配置就不多说了，有兴趣的话可以参考前面的文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器环境配置"><span class="nav-number">3.</span> <span class="nav-text">服务器环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录服务器生成ssh-key"><span class="nav-number">4.</span> <span class="nav-text">登录服务器生成ssh key</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#测试一下ssh是否能成功使用"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">测试一下ssh是否能成功使用</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是jenkins呢"><span class="nav-number">5.</span> <span class="nav-text">什么是jenkins呢?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Jenkins"><span class="nav-number">6.</span> <span class="nav-text">安装Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins配置"><span class="nav-number">7.</span> <span class="nav-text">Jenkins配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Jenkins配置文件中的几个重要的参数"><span class="nav-number">7.0.0.1.</span> <span class="nav-text">Jenkins配置文件中的几个重要的参数</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动Jenkins"><span class="nav-number">8.</span> <span class="nav-text">启动Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动成功后我们在浏览器中输入ip地址和端口号，进入解锁页面"><span class="nav-number">9.</span> <span class="nav-text">启动成功后我们在浏览器中输入ip地址和端口号，进入解锁页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入密码后，继续进入下一步，进入新手页面。"><span class="nav-number">10.</span> <span class="nav-text">输入密码后，继续进入下一步，进入新手页面。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装中…"><span class="nav-number">11.</span> <span class="nav-text">安装中…</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建管理员用户"><span class="nav-number">12.</span> <span class="nav-text">创建管理员用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例配置"><span class="nav-number">13.</span> <span class="nav-text">实例配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建任务"><span class="nav-number">14.</span> <span class="nav-text">创建任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建一个自由风格的软件项目"><span class="nav-number">15.</span> <span class="nav-text">构建一个自由风格的软件项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装两个插件"><span class="nav-number">16.</span> <span class="nav-text">安装两个插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入-系统管理-gt-系统设置页面配置"><span class="nav-number">17.</span> <span class="nav-text">进入 系统管理 =&gt; 系统设置页面配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Jenkins-Location"><span class="nav-number">17.0.0.1.</span> <span class="nav-text">Jenkins Location</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Publish-over-SSH配置"><span class="nav-number">18.</span> <span class="nav-text">Publish over SSH配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始任务配置"><span class="nav-number">19.</span> <span class="nav-text">开始任务配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建环境"><span class="nav-number">20.</span> <span class="nav-text">构建环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建"><span class="nav-number">21.</span> <span class="nav-text">构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择Send-build-artifacts-over-SSH配置"><span class="nav-number">22.</span> <span class="nav-text">选择Send build artifacts over SSH配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建后操作"><span class="nav-number">23.</span> <span class="nav-text">构建后操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试一下部署发布"><span class="nav-number">24.</span> <span class="nav-text">测试一下部署发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完美部署"><span class="nav-number">25.</span> <span class="nav-text">完美部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暂时先写这么多吧，有空会继续更新…"><span class="nav-number">26.</span> <span class="nav-text">暂时先写这么多吧，有空会继续更新…</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这里Nginx的配置就不多说了，有兴趣的话可以参考前面的文章"><span class="nav-number">2.</span> <span class="nav-text">这里Nginx的配置就不多说了，有兴趣的话可以参考前面的文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器环境配置"><span class="nav-number">3.</span> <span class="nav-text">服务器环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录服务器生成ssh-key"><span class="nav-number">4.</span> <span class="nav-text">登录服务器生成ssh key</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#测试一下ssh是否能成功使用"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">测试一下ssh是否能成功使用</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是jenkins呢"><span class="nav-number">5.</span> <span class="nav-text">什么是jenkins呢?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Jenkins"><span class="nav-number">6.</span> <span class="nav-text">安装Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins配置"><span class="nav-number">7.</span> <span class="nav-text">Jenkins配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Jenkins配置文件中的几个重要的参数"><span class="nav-number">7.0.0.1.</span> <span class="nav-text">Jenkins配置文件中的几个重要的参数</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动Jenkins"><span class="nav-number">8.</span> <span class="nav-text">启动Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动成功后我们在浏览器中输入ip地址和端口号，进入解锁页面"><span class="nav-number">9.</span> <span class="nav-text">启动成功后我们在浏览器中输入ip地址和端口号，进入解锁页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入密码后，继续进入下一步，进入新手页面。"><span class="nav-number">10.</span> <span class="nav-text">输入密码后，继续进入下一步，进入新手页面。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装中…"><span class="nav-number">11.</span> <span class="nav-text">安装中…</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建管理员用户"><span class="nav-number">12.</span> <span class="nav-text">创建管理员用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例配置"><span class="nav-number">13.</span> <span class="nav-text">实例配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建任务"><span class="nav-number">14.</span> <span class="nav-text">创建任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建一个自由风格的软件项目"><span class="nav-number">15.</span> <span class="nav-text">构建一个自由风格的软件项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装两个插件"><span class="nav-number">16.</span> <span class="nav-text">安装两个插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入-系统管理-gt-系统设置页面配置"><span class="nav-number">17.</span> <span class="nav-text">进入 系统管理 =&gt; 系统设置页面配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Jenkins-Location"><span class="nav-number">17.0.0.1.</span> <span class="nav-text">Jenkins Location</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Publish-over-SSH配置"><span class="nav-number">18.</span> <span class="nav-text">Publish over SSH配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始任务配置"><span class="nav-number">19.</span> <span class="nav-text">开始任务配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#凭据-》系统-》添加域"><span class="nav-number">19.1.</span> <span class="nav-text">凭据 》系统 》添加域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建环境"><span class="nav-number">20.</span> <span class="nav-text">构建环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#系统管理-》全局工具配置-》NodeJS；如果不添加nodejs在下面-NodeJS-Installation-中将不会出来内容"><span class="nav-number">20.0.1.</span> <span class="nav-text">系统管理 》全局工具配置 》NodeJS；如果不添加nodejs在下面 NodeJS Installation 中将不会出来内容</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建"><span class="nav-number">21.</span> <span class="nav-text">构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择Send-build-artifacts-over-SSH配置"><span class="nav-number">22.</span> <span class="nav-text">选择Send build artifacts over SSH配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建后操作"><span class="nav-number">23.</span> <span class="nav-text">构建后操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试一下部署发布"><span class="nav-number">24.</span> <span class="nav-text">测试一下部署发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完美部署"><span class="nav-number">25.</span> <span class="nav-text">完美部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暂时先写这么多吧，有空会继续更新…"><span class="nav-number">26.</span> <span class="nav-text">暂时先写这么多吧，有空会继续更新…</span></a></li></ol></div>
             
 
           </div>
@@ -849,7 +854,7 @@
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">12.9k</span>
+    <span title="站点总字数">13.2k</span>
   
 </div>
 <span id="busuanzi_container_site_pv">
