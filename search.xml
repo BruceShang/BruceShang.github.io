@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[微信打开网页键盘弹起后页面上滑，导致弹框里的按钮响应区域错位]]></title>
+    <url>%2F2019%2F06%2F19%2F%E5%BE%AE%E4%BF%A1%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E5%90%8E%E9%A1%B5%E9%9D%A2%E4%B8%8A%E6%BB%91%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%BC%B9%E6%A1%86%E9%87%8C%E7%9A%84%E6%8C%89%E9%92%AE%E5%93%8D%E5%BA%94%E5%8C%BA%E5%9F%9F%E9%94%99%E4%BD%8D%2F</url>
+    <content type="text"><![CDATA[微信打开网页键盘弹起后页面上滑，导致弹框里的按钮响应区域错位]]></content>
+      <categories>
+        <category>wechat</category>
+      </categories>
+      <tags>
+        <tag>wechat</tag>
+        <tag>微信ios 6.7</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[fatal: unable to access ' ':Could not resolve host: github.com解决方案]]></title>
     <url>%2F2019%2F06%2F05%2Ffatal%3A%20unable%20to%20access%20'%20'%3ACould%20not%20resolve%20host%3A%20github.com%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%2F</url>
     <content type="text"><![CDATA[一、在终端输入：1sudo vim /etc/resolv.conf 在最后一行增加nameserver 8.8.8.8或者nameserver 114.114.114.114即可。 114.114.114.114和8.8.8.8，这两个IP地址都属于公共域名解析服务DNS其中的一部分 二、114.114.114.114114.114.114.114是国内移动、电信和联通通用的DNS，手机和电脑端都可以使用，干净无广告，解析成功率相对来说更高，国内用户使用的比较多，而且速度相对快、稳定，是国内用户上网常用的DNS。 三、8.8.8.8 8.8.8.8是GOOGLE公司提供的DNS，该地址是全球通用的，相对来说，更适合国外以及访问国外网站的用户使用。]]></content>
