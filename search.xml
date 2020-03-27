@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[sort()对数组元素进行排序]]></title>
+    <url>%2F2020%2F03%2F27%2Fsort-%E5%AF%B9%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E8%BF%9B%E8%A1%8C%E6%8E%92%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[1.语法1arr.sort([compareFunction]) 参数 compareFunction 可选 用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的各个字符的Unicode位点进行排序。 firstEl 第一个用于比较的元素。 secondEl 第二个用于比较的元素。 如果 compareFunction(a, b) 小于 0 ，那么 a 会被排列到 b 之前；如果 compareFunction(a, b) 等于 0 ， a 和 b 的相对位置不变如果 compareFunction(a, b) 大于 0 ， b 会被排列到 a 之前 2.比较数字类型的值，可以通过a-b来实现升序排列12345let numbers = [9, 8, 5, 2, 1, 0]numbers.sort((a, b) =&gt; &#123; return a - b;&#125;)console.log(numbers) 3.根据数组里的对象属性进行排序123456789101112131415161718192021222324252627282930313233343536var items = [ &#123; name: 'Edward', value: 21, txtName: '震耳欲聋' &#125;, &#123; name: 'Sharpe', value: 37, txtName: '锦上添花' &#125;, &#123; name: 'And', value: 45, txtName: '八仙过海' &#125;, &#123; name: 'The', value: -12, txtName: '我行我素' &#125;, &#123; name: 'Magnetic', value: 33, txtName: '大吉大利' &#125;, &#123; name: 'Zeros', value: 37, txtName: '五福临门' &#125;];// 根据value值（数字类型）items.sort(function (a, b) &#123; return (a.value - b.value)&#125;);// 根据name字段 - 字母 items.sort(function(a, b) &#123; var nameA = a.name.toUpperCase(); var nameB = b.name.toUpperCase(); if (nameA &lt; nameB) &#123; return -1; &#125; if (nameA &gt; nameB) &#123; return 1; &#125; return 0;&#125;);// 根据数组对象里的 汉字 进行排序/* * 当排序非 ASCII 字符的字符串（如包含类似 e, é, è, a, ä 等字符的字符串）一些* 非英语语言的字符串需要使用 String.localeCompare。这个函数可以将函数排序到正* 确的顺序。*/items.sort(function(a, b) &#123; return a.txtName.localeCompare(b.txtName);&#125;) localeCompare详解 4.使用映射改善排序 compareFunction 可能需要对元素做多次映射以实现排序，尤其当 compareFunction 较为复杂，且元素较多的时候，某些 compareFunction 可能会导致很高的负载。使用 map 辅助排序将会是一个好主意。基本思想是首先将数组中的每个元素比较的实际值取出来，排序后再将数组恢复。 1234567891011121314151617// 需要被排序的数组var list = ['Delta', 'alpha', 'CHARLIE', 'bravo'];// 对需要排序的数字和位置的临时存储var mapped = list.map(function(el, i) &#123; return &#123; index: i, value: el.toLowerCase() &#125;;&#125;)// 按照多个值排序数组mapped.sort(function(a, b) &#123; return +(a.value &gt; b.value) || +(a.value === b.value) - 1;&#125;);// 根据索引得到排序的结果var result = mapped.map(function(el)&#123; return list[el.index];&#125;);]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>sort()</tag>
+        <tag>排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[微信打开网页键盘弹起后页面上滑，导致弹框里的按钮响应区域错位]]></title>
     <url>%2F2019%2F06%2F19%2F%E5%BE%AE%E4%BF%A1%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E5%90%8E%E9%A1%B5%E9%9D%A2%E4%B8%8A%E6%BB%91%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%BC%B9%E6%A1%86%E9%87%8C%E7%9A%84%E6%8C%89%E9%92%AE%E5%93%8D%E5%BA%94%E5%8C%BA%E5%9F%9F%E9%94%99%E4%BD%8D%2F</url>
     <content type="text"><![CDATA[微信打开网页键盘弹起后页面上滑，导致弹框里的按钮响应区域错位]]></content>
