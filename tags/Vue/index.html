@@ -87,7 +87,7 @@
 <meta name="description" content="想得好是聪明，计划得好更聪明，做得好是最聪明又是最好。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="bruceShang">
-<meta property="og:url" content="http://bruceshang.github.io/tags/vue/index.html">
+<meta property="og:url" content="http://bruceshang.github.io/tags/Vue/index.html">
 <meta property="og:site_name" content="bruceShang">
 <meta property="og:description" content="想得好是聪明，计划得好更聪明，做得好是最聪明又是最好。">
 <meta property="og:locale" content="zh-Hans">
@@ -123,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://bruceshang.github.io/tags/vue/"/>
+  <link rel="canonical" href="http://bruceshang.github.io/tags/Vue/"/>
 
 
 
 
 
-  <title>标签: vue | bruceShang</title>
+  <title>标签: Vue | bruceShang</title>
   
 
 
@@ -311,7 +311,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>vue<small>标签</small>
+        <h1>Vue<small>标签</small>
         </h1>
       </div>
 
@@ -323,37 +323,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2020/04/02/关于跨域的一些注意事项/" itemprop="url">
+            <a class="post-title-link" href="/2016/10/10/vue-filter/" itemprop="url">
               
-                <span itemprop="name">关于跨域资源共享(CORS) 的一些注意事项</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-04-02T14:50:23+08:00"
-              content="2020-04-02" >
-          04-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/03/31/vue组件之间通信几种方法/" itemprop="url">
-              
-                <span itemprop="name">vue组件之间通信几种方法</span>
+                <span itemprop="name">vue filter</span>
               
             </a>
         
@@ -361,37 +333,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-31T19:52:01+08:00"
-              content="2020-03-31" >
-          03-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/05/vue项目webpack多页面构建/" itemprop="url">
-              
-                <span itemprop="name">使用vue脚手架vue-cli配置多页面应用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-05T17:41:22+08:00"
-              content="2018-05-05" >
-          05-05
+              datetime="2016-10-10T15:30:50+08:00"
+              content="2016-10-10" >
+          10-10
         </time>
       </div>
 
@@ -455,7 +399,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -466,7 +410,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -477,7 +421,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -591,7 +535,7 @@
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">15.5k</span>
+    <span title="站点总字数">17.4k</span>
   
 </div>
 <span id="busuanzi_container_site_pv">
@@ -1110,6 +1054,87 @@
         })
         .fail(function (object, error) {
           console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+g("Error: " + error.code + " " + error.message);
         });
     }
 
